@@ -156,6 +156,7 @@ html.lenis body {
   <link href="./css/you-can-scroll.css" rel="stylesheet" type="text/css" />
   <link href="./css/zoom-slider.css" rel="stylesheet" type="text/css" />
   <link href="./css/storytelling.css" rel="stylesheet" type="text/css" />
+  <link href="./css/orbit-clock.css" rel="stylesheet" type="text/css" />
 </head>
 <body data-theme-nav="light" data-bg-nav="light" class="body">
   <div class="code-embed w-embed">
@@ -1131,6 +1132,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 data-sticky-title="heading" class="sticky-title-el">Where English needs to work.</h2>
             <h2 data-sticky-title="heading" class="sticky-title-el is--stacked light eng">Meetings that need alignment.<br>Presentations that call for clarity.</h2>
             <h2 data-sticky-title="heading" class="sticky-title-el is--stacked _3">Negotiations that require nuance.<br>Real business conversations.</h2>
+          </div>
+        </div>
+      </section>
+      <!-- Interactive Kinetic Orbit Clock (inspired by quynh.moe) -->
+      <section id="orbit-clock-section" class="orbit_clock_section" data-theme-section="light">
+        <div class="orbit-clock-wrapper">
+          <div class="orbit-clock" id="speak-orbit-clock" aria-label="Kinetic Orbit Clock">
+            <div class="orbit-center"></div>
           </div>
         </div>
       </section>
@@ -2604,5 +2613,6 @@ gsap.from('.logo_hero-wrapper', {
   <script src="./js/you-can-scroll.js" type="text/javascript"></script>
   <script src="./js/zoom-slider.js" type="text/javascript"></script>
   <script src="./js/storytelling.js" type="text/javascript"></script>
+  <script src="./js/orbit-clock.js" type="text/javascript"></script>
 </body>
 </html>

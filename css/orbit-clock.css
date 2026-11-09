@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Orbit Kinetic Clock - Inspired by quynh.moe
+   Kinetic strings, elastic spring physics, traveling light wave pulses,
+   and rolling slot-machine digital clock.
+   ========================================================================== */
+
+.orbit_clock_section {
+  position: relative;
+  width: 100%;
+  min-height: 82vh;
+  padding: 4rem 1.5rem;
+  background-color: var(--light-bg, #f9efe7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.orbit_clock_section * {
+  box-sizing: border-box;
+}
+
+.orbit-clock-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: clamp(520px, 76vh, 780px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Orbit Clock Container */
+.orbit-clock {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  --orbit-fs: 12px;
+  --color-highlight: #ff5500;
+  --color-body: rgba(28, 25, 23, 0.55);
+  --color-title: #1c1917;
+  --color-ground: #f9efe7;
+  cursor: crosshair;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+/* Canvas for Bezier Strings */
+.orbit-lines {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+/* Centered Digital Clock */
+.orbit-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+  font-size: clamp(54px, 8.5vw, 98px);
+  line-height: 1.1;
+  --orbit-ls: -0.02em;
+  letter-spacing: var(--orbit-ls);
+  color: var(--color-title, #1c1917);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.orbit-ch {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.orbit-ch-in {
+  display: inline-block;
+  will-change: transform;
+}
+
+.orbit-ch-in.is-old {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.orbit-ch:last-child {
+  margin-right: calc(-1 * var(--orbit-ls));
+}
+
+.orbit-ch.is-colon {
+  top: -0.09em;
+  padding: 0 0.08em;
+}
+
+.orbit-clock.is-compact .orbit-center {
+  font-size: clamp(34px, 5.5vw, 50px);
+}
+
+/* Radiating Second Labels */
+.orbit-sec {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--orbit-fs, 12px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--color-body, rgba(28, 25, 23, 0.55));
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .orbit_clock_section,
+.dark-theme .orbit_clock_section {
+  background-color: var(--dark-bg, #1c1c1b);
+}
+
+[data-theme="dark"] .orbit-clock,
+.dark-theme .orbit-clock {
+  --color-highlight: #ff5500;
+  --color-body: rgba(230, 225, 223, 0.55);
+  --color-title: #ffffff;
+  --color-ground: #1c1c1b;
+}
+
+@media (max-width: 768px) {
+  .orbit_clock_section {
+    min-height: 55vh;
+    padding: 3.5rem 1rem 3rem;
+  }
+  .orbit-clock-wrapper {
+    height: clamp(360px, 58vh, 500px);
+  }
+  .orbit_clock_header {
+    margin-bottom: 1rem;
+  }
+}
+
