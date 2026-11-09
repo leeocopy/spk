@@ -1,0 +1,197 @@
+/* ============================================================
+   ZOOM SLIDER — Kinetic Perspective Slider Component
+   ============================================================ */
+
+.zoom-slider-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background-color: #000000;
+  background: radial-gradient(ellipse at 50% 60%, #161616 0%, #000000 100%);
+  color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 10;
+}
+
+.zoom-slider-header {
+  position: absolute;
+  top: clamp(6.25rem, 11vh, 8rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  text-align: center;
+  pointer-events: none;
+  width: 90%;
+  max-width: 900px;
+}
+
+.zoom-slider-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 15%, #d4d4d8 60%, #71717a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.zoom-slider-subheading {
+  margin-top: 0.75rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.zoom-slider-strip {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.zoom-slider-strip.is-dragging {
+  cursor: grabbing;
+}
+
+.zoom-slider-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.zoom-slider-text {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 12px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 4px;
+  pointer-events: none;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.zoom-slider-text [data-number] {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  line-height: 1;
+}
+
+.zoom-slider-text [data-title] {
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.zoom-slider-text [data-desc] {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.zoom-slider-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #111111;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  will-change: width, height;
+}
+
+.zoom-slider-image-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+  opacity: 1;
+  will-change: transform;
+}
+
+/* Bottom exploration bar */
+.zoom-slider-nav-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 25;
+  pointer-events: auto;
+}
+
+.zoom-slider-nav-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.zoom-slider-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.08);
+}
+
+.zoom-slider-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.zoom-slider-counter {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .zoom-slider-section {
+    min-height: 580px;
+  }
+  .zoom-slider-header {
+    top: 5.25rem;
+  }
+  .zoom-slider-nav-hint {
+    bottom: 1rem;
+  }
+}
+

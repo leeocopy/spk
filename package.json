@@ -1,0 +1,25 @@
+{
+  "name": "davidecarusio-clone",
+  "version": "1.0.0",
+  "description": "Full reverse-engineered clone of davidecarusio.it with complete frontend, backend API, animations, WebGL shader and offline assets",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "tweakpane": "^4.0.5"
+  },
+  "keywords": [
+    "portfolio",
+    "webflow",
+    "reverse-engineer",
+    "gsap",
+    "lenis",
+    "unicornstudio"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "ISC"
+}

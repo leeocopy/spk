@@ -1,0 +1,227 @@
+/* ============================================================
+   YOU CAN SCROLL — Monochrome Kinetic Typography Component
+   Theme: Pure White, Black, Charcoal & Silver Gradients
+   Zero Overlap | Perfect Baseline | Kinetic Scrolling Word Reel
+   ============================================================ */
+
+:root {
+  --ycs-item-height: 18vh;
+}
+
+/* Main Section: Dark Developer Grid Background */
+.you-can-scroll-section {
+  position: relative;
+  width: 100%;
+  background-color: #030303;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  color: #ffffff;
+  overflow: visible !important; /* CRITICAL: Enables position: sticky to stick to viewport */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  z-index: 10;
+}
+
+.ycs-main {
+  position: relative;
+  width: 100%;
+  overflow: visible !important;
+}
+
+.ycs-content {
+  position: relative;
+  width: 100%;
+  overflow: visible !important;
+}
+
+/* Subtle top & bottom edge atmospheric fades */
+.ycs-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  background: linear-gradient(to bottom, #030303 0%, rgba(3, 3, 3, 0) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ycs-content::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  background: linear-gradient(to top, #030303 0%, rgba(3, 3, 3, 0) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ============================================================
+   STICKY ROW: Two-Column Split (50% / 50%)
+   Left Column: Fixed Sticky "you can"
+   Right Column: Vertically Scrolling Kinetic Word Reel
+   Guarantees: Zero Overlap, Zero Wrapping, Pixel-Perfect Baseline
+   ============================================================ */
+.ycs-sticky-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* The Fixed "you can" Prefix — Anchored on Left Half */
+.ycs-prefix {
+  position: sticky !important;
+  top: 50vh !important;
+  transform: translateY(-50%) !important;
+  flex: 1 1 50% !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  margin: 0 !important;
+  padding: 0 0.25em 0 0 !important;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(3.2rem, 7.5vw, 7.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+  user-select: none !important;
+  z-index: 5 !important;
+  color: #ffffff !important;
+  background: linear-gradient(180deg, #ffffff 40%, #e2e8f0 75%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.95)) !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* The Scrolling List of Words — Anchored on Right Half */
+.ycs-list {
+  flex: 1 1 50% !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: calc(50vh - 9vh) 0 calc(50vh - 9vh) 0.25em !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 2 !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* Kinetic Words in the Reel — Pure Monochrome & Silver Gradient */
+.ycs-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 18vh !important;
+  display: flex !important;
+  align-items: center !important;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(3.2rem, 7.5vw, 7.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  white-space: nowrap !important;
+  color: #a1a1aa;
+  background: linear-gradient(180deg, #a1a1aa 0%, #52525b 50%, #27272a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.22;
+  filter: brightness(0.65);
+  transform-origin: left center;
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+  will-change: opacity, filter, transform;
+  overflow: visible !important;
+}
+
+/* Active Highlight: Luminous Silver-White Gradient Glow */
+.ycs-list li.is-active,
+.ycs-list li[data-active="true"] {
+  opacity: 1 !important;
+  background: linear-gradient(180deg, #ffffff 30%, #e2e8f0 70%, #94a3b8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: brightness(1.35) drop-shadow(0 0 35px rgba(255, 255, 255, 0.45)) !important;
+  transform: scale(1.04) !important;
+}
+
+/* Outro "fin." */
+.ycs-fin-wrap {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.ycs-fin {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(4.5rem, 11vw, 10.5rem) !important;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 30%, #94a3b8 70%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.ycs-footer {
+  display: none !important;
+}
+
+/* Responsive Scaling */
+@media (max-width: 991px) {
+  .ycs-prefix,
+  .ycs-list li {
+    font-size: clamp(2.4rem, 7.2vw, 4.8rem) !important;
+    height: 15vh !important;
+  }
+  .ycs-list {
+    padding-top: calc(50vh - 7.5vh) !important;
+    padding-bottom: calc(50vh - 7.5vh) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .ycs-prefix,
+  .ycs-list li {
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem) !important;
+    height: 13vh !important;
+  }
+  .ycs-prefix {
+    padding-right: 0.15em !important;
+  }
+  .ycs-list {
+    padding: calc(50vh - 6.5vh) 0 calc(50vh - 6.5vh) 0.15em !important;
+  }
+}
+
+.tp-dfwv {
+  z-index: 99999 !important;
+}
