@@ -169,6 +169,10 @@ app.get('/igloo-loader', (req, res) => {
   res.sendFile(path.join(__dirname, 'igloo-loader.html'));
 });
 
+app.get(['/event', '/event/:year', '/event.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'event.html'));
+});
+
 // 404 Handler
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'index.html'));

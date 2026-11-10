@@ -48,7 +48,7 @@
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => "+=" + Math.round(window.innerHeight * (isMobile ? 1.0 : 1.4)),
+        end: () => "+=" + Math.round(window.innerHeight * (isMobile ? 1.3 : 1.8)),
         pin: true,
         pinSpacing: true,
         scrub: 0.3, // Nimble, light, butter-smooth

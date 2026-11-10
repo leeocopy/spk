@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SPEAK Event Showcase | Details & Retrospective</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/event.css">
+</head>
+<body class="event-page">
+
+  <!-- Top Sticky Navigation -->
+  <header class="event-nav">
+    <div class="event-nav-container">
+      <a href="./index.html#tedx-deck-section" class="event-nav-back" id="back-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Back to Events Deck</span>
+      </a>
+
+      <div class="event-nav-center">
+        <a href="./index.html" class="event-nav-logo">
+          <img src="./images/dark.png" alt="SPEAK" style="filter: invert(1);">
+          <span>SPEAK</span>
+        </a>
+      </div>
+
+      <a href="#action-box" class="event-nav-cta" id="nav-cta-btn">Register / Contact</a>
+    </div>
+  </header>
+
+  <!-- Horizontal Year Switcher Bar -->
+  <nav class="event-year-bar" aria-label="Browse event years">
+    <div class="event-year-pills" id="year-pills-container">
+      <!-- Generated dynamically by JS -->
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="event-hero" id="event-hero">
+    <div class="event-hero-media-wrap" id="hero-media-container">
+      <!-- Video or Image injected here -->
+    </div>
+    <div class="event-hero-overlay"></div>
+
+    <div class="event-hero-content">
+      <div class="event-status-badge upcoming" id="status-badge">
+        <span class="badge-dot"></span>
+        <span id="status-badge-text">Upcoming Event</span>
+      </div>
+
+      <div class="event-hero-title-row">
+        <span class="event-hero-year" id="hero-year-num">15</span>
+        <h1 class="event-hero-theme" id="hero-theme-title">Horizons of Clarity</h1>
+      </div>
+
+      <div class="event-hero-meta">
+        <div class="event-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span id="hero-date">Saturday, May 29, 2027</span>
+        </div>
+        <div class="event-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span id="hero-location">Grand Palais & Live Stream</span>
+        </div>
+      </div>
+
+      <p class="event-hero-headline" id="hero-headline">
+        Where Corporate Vision Meets Irreversible Alignment across Global Leadership Teams.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="event-main">
+    <!-- Key Metrics Grid -->
+    <div class="event-metrics-grid" id="metrics-grid">
+      <!-- Dynamic metrics injected here -->
+    </div>
+
+    <div class="event-grid-2col">
+      <!-- Left Column: Story & Details -->
+      <div class="event-left-col">
+        <!-- Overview -->
+        <section style="margin-bottom: 3.5rem;">
+          <h2 class="event-section-title">Overview & Strategic Focus</h2>
+          <p class="event-section-desc" id="overview-text">
+            Fifteen years of empowering executives, international teams, and global enterprises to speak with absolute clarity.
+          </p>
+        </section>
+
+        <!-- Dynamic Container: (Upcoming: Tracks & HowToAttend) OR (Past: Video Recap & What Happened) -->
+        <div id="dynamic-content-area"></div>
+      </div>
+
+      <!-- Right Column: Sidebar / Action Form / Venue Details -->
+      <div class="event-right-col">
+        <div class="event-sidebar-sticky" id="action-box">
+          <!-- Injected dynamically based on Upcoming vs Past -->
+          <div id="sidebar-content"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="event-footer">
+    <p>&copy; 2026 SPEAK Corporate English. All rights reserved. <a href="./index.html">Back to Main Website</a></p>
+  </footer>
+
+  <script src="./js/event-data.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Parse Year Parameter from URL (?year=15)
+      const urlParams = new URLSearchParams(window.location.search);
+      let year = urlParams.get('year') || '15';
+      const events = window.SPEAK_EVENTS || {};
+      const data = events[year] || events['15'];
+
+      // 2. Render Year Switcher Pills
+      const pillsContainer = document.getElementById('year-pills-container');
+      const allYears = ['15', '14', '13', '12', '11', '10'];
+      
+      allYears.forEach((yKey) => {
+        const item = events[yKey];
+        if (!item) return;
+        const a = document.createElement('a');
+        a.href = `./event.html?year=${yKey}`;
+        a.className = `event-pill ${yKey === year ? 'is-active' : ''}`;
+        a.innerHTML = `<span>Year ${item.year}</span> <span style="opacity: 0.6;">&bull; ${item.theme}</span>`;
+        pillsContainer.appendChild(a);
+      });
+
+      // 3. Populate Hero Information
+      document.title = `SPEAK Event | Year ${data.year} — ${data.theme}`;
+      document.getElementById('hero-year-num').textContent = data.year;
+      document.getElementById('hero-theme-title').textContent = data.theme;
+      document.getElementById('hero-date').textContent = data.date;
+      document.getElementById('hero-location').textContent = `${data.location} (${data.city})`;
+      document.getElementById('hero-headline').textContent = data.headline || data.tagline;
+      document.getElementById('overview-text').textContent = data.overview;
+
+      const statusBadge = document.getElementById('status-badge');
+      const statusBadgeText = document.getElementById('status-badge-text');
+      statusBadge.className = `event-status-badge ${data.isUpcoming ? 'upcoming' : 'past'}`;
+      statusBadgeText.textContent = data.statusText;
+
+      // Hero Media
+      const heroMedia = document.getElementById('hero-media-container');
+      if (data.isUpcoming && data.heroVideo) {
+        heroMedia.innerHTML = `
+          <video class="event-hero-media" src="${data.heroVideo}" poster="${data.heroPoster}" autoplay loop muted playsinline></video>
+        `;
+      } else {
+        heroMedia.innerHTML = `
+          <img class="event-hero-media" src="${data.heroImage || data.heroPoster}" alt="Year ${data.year}">
+        `;
+      }
+
+      // 4. Populate Metrics
+      const metricsGrid = document.getElementById('metrics-grid');
+      metricsGrid.innerHTML = '';
+      (data.highlights || []).forEach((m) => {
+        const card = document.createElement('div');
+        card.className = 'event-metric-card';
+        card.innerHTML = `
+          <div class="event-metric-num">${m.num}</div>
+          <div class="event-metric-label">${m.label}</div>
+        `;
+        metricsGrid.appendChild(card);
+      });
+
+      // 5. Populate Dynamic Content & Sidebar
+      const contentArea = document.getElementById('dynamic-content-area');
+      const sidebarContent = document.getElementById('sidebar-content');
+
+      if (data.isUpcoming) {
+        // -------------------------------------------------------------
+        // UPCOMING EVENT CONTENT (Year 15)
+        // -------------------------------------------------------------
+        document.getElementById('nav-cta-btn').textContent = 'Reserve Your Seat';
+
+        let tracksHtml = '<h2 class="event-section-title">Summit Agenda & Tracks</h2><div style="margin-bottom: 3.5rem;">';
+        (data.tracks || []).forEach((t) => {
+          tracksHtml += `
+            <div class="event-track-item">
+              <div class="event-track-time">${t.time}</div>
+              <h3 class="event-track-title">${t.title}</h3>
+              <p class="event-track-desc">${t.desc}</p>
+            </div>
+          `;
+        });
+        tracksHtml += '</div>';
+
+        let howToAttendHtml = `
+          <h2 class="event-section-title">${data.howToAttend.title}</h2>
+          <p class="event-section-desc">${data.howToAttend.subtitle}</p>
+          <div class="event-steps-list">
+        `;
+        data.howToAttend.steps.forEach((s) => {
+          howToAttendHtml += `
+            <div class="event-step-card">
+              <div class="event-step-num">${s.step}</div>
+              <div>
+                <h3 class="event-step-title">${s.title}</h3>
+                <p class="event-step-desc">${s.desc}</p>
+              </div>
+            </div>
+          `;
+        });
+        howToAttendHtml += '</div>';
+
+        contentArea.innerHTML = tracksHtml + howToAttendHtml;
+
+        // Sidebar: Interactive Registration Form
+        sidebarContent.innerHTML = `
+          <div class="event-box-card">
+            <h3 class="event-box-title">Reserve Your Seat</h3>
+            <p class="event-box-sub">Secure an executive pass or register your leadership delegation for Year 15.</p>
+            
+            <form id="event-reg-form">
+              <div class="event-form-group">
+                <label class="event-form-label">Full Name</label>
+                <input type="text" class="event-form-input" placeholder="e.g. Sarah Jenkins" required>
+              </div>
+              <div class="event-form-group">
+                <label class="event-form-label">Corporate Email</label>
+                <input type="email" class="event-form-input" placeholder="s.jenkins@company.com" required>
+              </div>
+              <div class="event-form-group">
+                <label class="event-form-label">Company / Organization</label>
+                <input type="text" class="event-form-input" placeholder="e.g. Global Tech Partners" required>
+              </div>
+              <div class="event-form-group">
+                <label class="event-form-label">Pass Type</label>
+                <select class="event-form-select">
+                  <option value="individual">Executive Individual Pass</option>
+                  <option value="delegation">Corporate Delegation (5+ seats)</option>
+                  <option value="vip">VIP Masterclass & Private Dinner</option>
+                </select>
+              </div>
+              <button type="submit" class="event-form-btn">Confirm Registration</button>
+            </form>
+
+            <div class="event-success-alert" id="reg-success">
+              <strong>Application Submitted!</strong><br>
+              Our executive desk will review your credentials and issue your confirmation within 48 hours.
+            </div>
+          </div>
+
+          <div class="event-box-card" style="background: rgba(255, 255, 255, 0.03);">
+            <h4 style="margin: 0 0 0.5rem; color: #fff; font-size: 1rem;">Venue & Practical Information</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.75rem;">
+              <strong>Date:</strong> May 29, 2027<br>
+              <strong>Doors Open:</strong> 08:30 AM CET<br>
+              <strong>Location:</strong> Grand Palais Éphémère, Paris & Global High-Def Stream
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-subtle); margin: 0;">
+              Simultaneous translation available in English, French, and German.
+            </p>
+          </div>
+        `;
+
+        const form = document.getElementById('event-reg-form');
+        const alert = document.getElementById('reg-success');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          form.style.display = 'none';
+          alert.style.display = 'block';
+        });
+
+      } else {
+        // -------------------------------------------------------------
+        // PAST EVENT CONTENT (Years 14 - 5)
+        // -------------------------------------------------------------
+        document.getElementById('nav-cta-btn').textContent = 'Explore Solutions';
+        document.getElementById('nav-cta-btn').href = './index.html#projects';
+
+        let pastHtml = `
+          <h2 class="event-section-title">Event Recap & Keynote Showreel</h2>
+          <div class="event-video-card">
+            <video src="${data.videoSrc}" poster="${data.videoPoster}" controls playsinline preload="metadata"></video>
+          </div>
+
+          <h2 class="event-section-title" style="margin-top: 3rem;">What Happened (The Story of Year ${data.year})</h2>
+          <p class="event-section-desc" style="font-size: 1.1rem; line-height: 1.7; color: rgba(255, 255, 255, 0.9);">
+            ${data.recapStory}
+          </p>
+
+          <h3 style="font-size: 1.3rem; margin: 2rem 0 1rem; color: #fff;">Key Executive Takeaways</h3>
+          <div style="margin-bottom: 3.5rem;">
+        `;
+
+        (data.takeaways || []).forEach((item) => {
+          pastHtml += `
+            <div class="event-takeaway-item">
+              <div class="event-takeaway-icon">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.3 4L6 11.3 2.7 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="event-takeaway-text">${item}</div>
+            </div>
+          `;
+        });
+        pastHtml += '</div>';
+
+        contentArea.innerHTML = pastHtml;
+
+        // Sidebar: Past Event Summary & Host Info
+        sidebarContent.innerHTML = `
+          <div class="event-box-card">
+            <h3 class="event-box-title">Edition Details</h3>
+            <p class="event-box-sub">Archival summary of Year ${data.year} (${data.theme}).</p>
+            
+            <div style="font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem;">
+              <div><strong>Conducted On:</strong> ${data.date}</div>
+              <div><strong>Primary Venue:</strong> ${data.location}</div>
+              <div><strong>Global Reach:</strong> High-Definition Broadcast</div>
+              <div><strong>Status:</strong> Completed & Documented</div>
+            </div>
+
+            <a href="./index.html#projects" class="event-form-btn" style="display: block; text-align: center; text-decoration: none;">
+              Bring This to Your Team
+            </a>
+          </div>
+
+          <div class="event-box-card" style="background: rgba(255, 255, 255, 0.03);">
+            <h4 style="margin: 0 0 0.5rem; color: #fff; font-size: 1rem;">Looking for Next Summit?</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 1rem;">
+              Join us for the upcoming Year 15 Summit. Registration is now open for verified corporate delegates.
+            </p>
+            <a href="./event.html?year=15" style="color: var(--brand-orange); font-weight: 700; text-decoration: none; font-size: 0.88rem;">
+              View Year 15 Details &rarr;
+            </a>
+          </div>
+        `;
+      }
+    })();
+  </script>
+</body>
+</html>
+
