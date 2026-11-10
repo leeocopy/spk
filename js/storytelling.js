@@ -16,16 +16,21 @@
     const descEl = section.querySelector(".storytelling-desc");
     if (!descEl) return;
 
-    // Split text into words (Originkit ScrollTextHighlight logic)
-    const rawText = descEl.textContent.trim();
-    const words = rawText.split(/\s+/).filter(Boolean);
-
-    descEl.innerHTML = words
-      .map(
-        (word) =>
-          `<span class="originkit-word">${word}</span>`
-      )
-      .join(" ");
+    const pElements = descEl.querySelectorAll("p");
+    if (pElements.length > 0) {
+      pElements.forEach((p) => {
+        const words = p.textContent.trim().split(/\s+/).filter(Boolean);
+        p.innerHTML = words
+          .map((word) => `<span class="originkit-word">${word}</span>`)
+          .join(" ");
+      });
+    } else {
+      const rawText = descEl.textContent.trim();
+      const words = rawText.split(/\s+/).filter(Boolean);
+      descEl.innerHTML = words
+        .map((word) => `<span class="originkit-word">${word}</span>`)
+        .join(" ");
+    }
 
     const targets = descEl.querySelectorAll(".originkit-word");
     const isMobile = window.innerWidth <= 640;

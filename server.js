@@ -39,7 +39,9 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/videos', express.static(path.join(__dirname, 'videos')));
 app.use('/libs', express.static(path.join(__dirname, 'libs')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/photo100', express.static(path.join(__dirname, 'photo100')));
 app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
+app.get('/favicon.ico', (req, res) => res.sendFile(path.join(__dirname, 'images', 'favicon.png')));
 app.get('/sitemap.xml', (req, res) => res.type('application/xml').sendFile(path.join(__dirname, 'sitemap.xml')));
 
 // Projects & Solutions Catalog API

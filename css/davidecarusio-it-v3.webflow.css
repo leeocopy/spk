@@ -1337,11 +1337,11 @@ h3 {
 }
 
 .nav-logo-text {
-  letter-spacing: -.02em;
+  letter-spacing: .08em;
   padding-right: .1em;
   font-family: 'Garet', 'Garet Heavy', Funneldisplay Variablefont Wght, sans-serif;
   font-size: 1.15em;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1396,8 +1396,8 @@ h3 {
 .loader__logo-wrap {
   justify-content: center;
   align-items: center;
-  width: 15em;
-  height: 3em;
+  width: 24em;
+  height: 5em;
   display: flex;
   position: relative;
 }
@@ -1450,6 +1450,13 @@ h3 {
   letter-spacing: 0.14em;
 }
 
+/* Brand name "Speak": same style as the navbar logo */
+.loader__text-el:first-child {
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
 .loader__container {
   z-index: 2;
   flex-flow: column;
@@ -1485,6 +1492,28 @@ h3 {
   opacity: .2;
   padding-left: .1em;
   padding-right: .1em;
+}
+
+/* Center "Speak": same style as the navbar logo */
+.loader__logo-text {
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  font-family: 'Garet', 'Garet Heavy', sans-serif;
+  font-size: 3.8em;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1;
+}
+
+/* Brand wordmark in hero & footer: same style as the navbar logo */
+.brand-wordmark {
+  font-family: 'Garet', 'Garet Heavy', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1;
+  color: inherit;
 }
 
 .code-embed-5 {

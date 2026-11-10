@@ -39,7 +39,38 @@
   overflow: visible !important;
 }
 
-/* Subtle top & bottom edge atmospheric fades */
+/* Top Header "With Speak" — Positioned higher with ample headroom above "You can" */
+.ycs-header {
+  position: sticky !important;
+  top: calc(50vh - 25vh) !important;
+  height: 10vh !important;
+  margin-top: calc(50vh - 25vh) !important;
+  margin-bottom: -10vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+  will-change: opacity, transform;
+}
+
+.ycs-header-title {
+  font-family: 'Garet', 'Garet Heavy', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(2.6rem, 5.5vw, 5rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.45)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95)) !important;
+  opacity: 1 !important;
+  will-change: opacity, transform;
+}
+
 .ycs-content::before {
   content: "";
   position: absolute;
@@ -201,6 +232,10 @@
 
 /* Responsive Scaling */
 @media (max-width: 991px) {
+  .ycs-header {
+    top: calc(50vh - 22vh) !important;
+    margin-top: calc(50vh - 22vh) !important;
+  }
   .ycs-prefix,
   .ycs-list li {
     font-size: clamp(2.4rem, 7.2vw, 4.8rem) !important;
@@ -217,6 +252,10 @@
 }
 
 @media (max-width: 640px) {
+  .ycs-header {
+    top: calc(50vh - 20vh) !important;
+    margin-top: calc(50vh - 20vh) !important;
+  }
   .ycs-prefix,
   .ycs-list li {
     font-size: clamp(1.8rem, 7.5vw, 2.8rem) !important;

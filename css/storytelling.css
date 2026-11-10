@@ -98,6 +98,15 @@
   margin: 0;
 }
 
+.storytelling-desc p {
+  margin: 0 0 1.2rem 0;
+  color: inherit;
+}
+
+.storytelling-desc p:last-child {
+  margin-bottom: 0;
+}
+
 .storytelling-desc .originkit-word {
   display: inline-block;
   color: rgba(255, 255, 255, 0.18);

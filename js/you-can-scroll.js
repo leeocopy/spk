@@ -12,8 +12,35 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const section = document.querySelector(".you-can-scroll-section");
     const items = gsap.utils.toArray(".ycs-list li");
     if (!items || !items.length) return;
+
+    const header = section ? section.querySelector(".ycs-header") : null;
+    if (header) {
+      gsap.set(header, { opacity: 1, y: 0 });
+
+      // Stays 100% visible when the section arrives with "You can lead." in center.
+      // Has a stable dwell zone so the entire section ("With Speak" + "You can lead.")
+      // is completely visible at rest, and only smoothly fades out when the user scrolls
+      // past "lead." (between 40px and 150px) before "negotiate." arrives.
+      gsap.fromTo(
+        header,
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: -28,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: items[0],
+            start: "center center-=40",
+            end: "center center-=150",
+            scrub: 0.1,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    }
 
     let dimmerScrub = null;
 

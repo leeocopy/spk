@@ -4,6 +4,15 @@
    Geist typography, frosted glass, and responsive layouts.
    ========================================================================== */
 
+@font-face {
+  font-family: 'Garet';
+  src: url('../fonts/Garet-Heavy.woff2') format('woff2'),
+       url('../fonts/Garet-Heavy.woff') format('woff');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-primary: #0e0e0e;
   --bg-surface: #171717;
@@ -98,14 +107,10 @@ body.event-page {
   gap: 0.5rem;
   text-decoration: none;
   color: #ffffff;
-  font-weight: 800;
+  font-family: 'Garet', sans-serif;
+  font-weight: 700;
   letter-spacing: 0.08em;
   font-size: 1.1rem;
-}
-
-.event-nav-logo img {
-  height: 22px;
-  width: auto;
 }
 
 .event-nav-cta {
