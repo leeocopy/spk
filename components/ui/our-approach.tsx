@@ -83,8 +83,8 @@ export default function OurApproach() {
           </motion.a>
         </div>
 
-        <div className="oa-row">
-          <div className="oa-left">
+        <div className="oa-content">
+          <div className="oa-text-block">
             <motion.div className="oa-portrait oa-portrait--logo" {...fade(inView, 0.12)}>
               <img
                 src="./images/brand/speak-logo-ribbons.png"
@@ -153,10 +153,11 @@ export default function OurApproach() {
                       points={tier.points}
                       fill={fills[i]}
                       stroke="white"
-                      strokeWidth={isActive ? 0.55 : 0.28}
-                      strokeOpacity={isActive ? 1 : 0.35}
+                      strokeWidth={isActive ? 0.6 : 0.3}
+                      strokeOpacity={isActive ? 1 : 0.38}
                       className="oa-pyramid-tier"
                       onMouseEnter={() => setHovered(tier.id)}
+                      onClick={() => setHovered(tier.id)}
                       onFocus={() => setHovered(tier.id)}
                       tabIndex={0}
                       role="button"
@@ -165,24 +166,24 @@ export default function OurApproach() {
                   );
                 })}
 
-                <text x="50" y="75" textAnchor="middle" fill="#ffffff" fillOpacity="0.88" fontFamily="DM Sans, sans-serif" fontSize="5.2" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
+                <text x="50" y="75" textAnchor="middle" fill="#ffffff" fillOpacity="0.9" fontFamily="DM Sans, sans-serif" fontSize="5.2" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
                   Situations
                 </text>
-                <text x="50" y="46" textAnchor="middle" fill="#ffffff" fillOpacity="0.92" fontFamily="DM Sans, sans-serif" fontSize="5" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
+                <text x="50" y="46" textAnchor="middle" fill="#ffffff" fillOpacity="0.94" fontFamily="DM Sans, sans-serif" fontSize="5" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
                   Practice
                 </text>
-                <text x="50" y="20" textAnchor="middle" fill="#ffffff" fillOpacity="0.95" fontFamily="DM Sans, sans-serif" fontSize="4.2" fontWeight="600" letterSpacing="0.02em" style={{ pointerEvents: "none" }}>
+                <text x="50" y="20" textAnchor="middle" fill="#ffffff" fillOpacity="0.96" fontFamily="DM Sans, sans-serif" fontSize="4.2" fontWeight="600" letterSpacing="0.02em" style={{ pointerEvents: "none" }}>
                   Confidence
                 </text>
               </svg>
 
               {/* No remount key — avoids layout jump while scrolling / hovering */}
               <div className="oa-pyramid-caption">
-                <span className="oa-pyramid-step">{active.step}</span>
-                <div>
+                <div className="oa-pyramid-caption-head">
+                  <span className="oa-pyramid-step">{active.step}</span>
                   <p className="oa-pyramid-caption-title">{active.label}</p>
-                  <p className="oa-pyramid-caption-detail">{active.detail}</p>
                 </div>
+                <p className="oa-pyramid-caption-detail">{active.detail}</p>
               </div>
             </motion.div>
           </div>

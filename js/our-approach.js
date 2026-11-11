@@ -33468,8 +33468,8 @@
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-row", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-left", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-text-block", children: [
               /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.div, { className: "oa-portrait oa-portrait--logo", ...fade(inView2, 0.12), children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
                 "img",
                 {
@@ -33527,10 +33527,11 @@
                           points: tier.points,
                           fill: fills[i],
                           stroke: "white",
-                          strokeWidth: isActive ? 0.55 : 0.28,
-                          strokeOpacity: isActive ? 1 : 0.35,
+                          strokeWidth: isActive ? 0.6 : 0.3,
+                          strokeOpacity: isActive ? 1 : 0.38,
                           className: "oa-pyramid-tier",
                           onMouseEnter: () => setHovered(tier.id),
+                          onClick: () => setHovered(tier.id),
                           onFocus: () => setHovered(tier.id),
                           tabIndex: 0,
                           role: "button",
@@ -33539,18 +33540,18 @@
                         tier.id
                       );
                     }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "75", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.88", fontFamily: "DM Sans, sans-serif", fontSize: "5.2", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Situations" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "46", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.92", fontFamily: "DM Sans, sans-serif", fontSize: "5", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Practice" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "20", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.95", fontFamily: "DM Sans, sans-serif", fontSize: "4.2", fontWeight: "600", letterSpacing: "0.02em", style: { pointerEvents: "none" }, children: "Confidence" })
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "75", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.9", fontFamily: "DM Sans, sans-serif", fontSize: "5.2", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Situations" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "46", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.94", fontFamily: "DM Sans, sans-serif", fontSize: "5", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Practice" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "20", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.96", fontFamily: "DM Sans, sans-serif", fontSize: "4.2", fontWeight: "600", letterSpacing: "0.02em", style: { pointerEvents: "none" }, children: "Confidence" })
                   ]
                 }
               ),
               /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-pyramid-caption", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "oa-pyramid-step", children: active.step }),
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-title", children: active.label }),
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-detail", children: active.detail })
-                ] })
+                /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-pyramid-caption-head", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "oa-pyramid-step", children: active.step }),
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-title", children: active.label })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-detail", children: active.detail })
               ] })
             ] }) })
           ] })
