@@ -11,6 +11,7 @@ declare global {
 
 export default function OurApproach() {
   const sectionRef = useRef<HTMLElement>(null);
+  const pyramidRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
@@ -28,26 +29,27 @@ export default function OurApproach() {
       gsap.registerPlugin(ScrollTrigger);
 
       const section = sectionRef.current;
-      if (!section) return false;
+      const pyramid = pyramidRef.current;
+      if (!section || !pyramid) return false;
 
-      const tier1 = section.querySelector(".oa-tier-situations");
-      const tier2 = section.querySelector(".oa-tier-practice");
-      const tier3 = section.querySelector(".oa-tier-confidence");
+      const tier1 = pyramid.querySelector(".oa-tier-situations");
+      const tier2 = pyramid.querySelector(".oa-tier-practice");
+      const tier3 = pyramid.querySelector(".oa-tier-confidence");
 
       if (!tier1 || !tier2 || !tier3) return false;
 
       ctx = gsap.context(() => {
-        // Initial state before entering viewport
+        // Initial state before scrolling into view
         gsap.set(tier1, { y: 40, opacity: 0, scale: 0.94, transformOrigin: "50% 90%" });
         gsap.set(tier2, { y: 32, opacity: 0, scale: 0.92, transformOrigin: "50% 60%" });
         gsap.set(tier3, { y: 24, opacity: 0, scale: 0.88, transformOrigin: "50% 30%" });
 
-        // Build & illuminate tiers with scroll
+        // Trigger animation as pyramid scrolls into view
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: section,
-            start: "top 78%",
-            end: "center 45%",
+            trigger: pyramid,
+            start: "top 80%",
+            end: "center 50%",
             scrub: 0.75,
             invalidateOnRefresh: true,
           },
@@ -87,7 +89,41 @@ export default function OurApproach() {
       aria-label="Our Approach"
     >
       <div className="oa-inner">
-        <div className="oa-pyramid-wrap">
+        {/* Logo & Quote Block */}
+        <div className="oa-text-block">
+          <div className="oa-portrait oa-portrait--logo">
+            <img
+              src="./images/brand/speak-logo-ribbons.png"
+              alt="Speak"
+              className="oa-portrait-img oa-portrait-img--logo"
+              decoding="async"
+              width={420}
+              height={420}
+            />
+          </div>
+
+          <div className="oa-quote">
+            <span className="oa-quote-mark" aria-hidden="true">
+              {"\u201C"}
+            </span>
+
+            <p className="oa-quote-text">
+              We kept seeing the same pattern — professionals with real
+              potential held back by English that works in theory but fails
+              in meetings, presentations and negotiations. Speak exists to
+              align practice, confidence and real business conversations into
+              one clear path.
+            </p>
+
+            <div className="oa-attr">
+              <p>Speak</p>
+              <p>Corporate English &amp; Professional Experiences</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Pyramid with GSAP Scroll Animation */}
+        <div ref={pyramidRef} className="oa-pyramid-wrap">
           <svg
             className="oa-pyramid-svg"
             viewBox="0 0 100 95"

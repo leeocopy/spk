@@ -1,15 +1,15 @@
-/* Our Approach — GSAP Scroll Kinetic Pyramid */
+/* Our Approach — GSAP Scroll Kinetic Pyramid with Quote Block */
 
 /* Reserve height before React mounts — prevents Lenis/ST jump */
 [data-our-approach] {
   display: block;
-  min-height: 38rem;
+  min-height: 44rem;
   background: #0f0f0f;
 }
 
 @media (min-width: 1024px) {
   [data-our-approach] {
-    min-height: 46rem;
+    min-height: 52rem;
   }
 }
 
@@ -17,8 +17,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 72vh;
-  padding: 5rem 1.5rem 6rem;
+  min-height: 80vh;
+  padding: 5rem 1.5rem 6.5rem;
   background: #0f0f0f;
   color: #fff;
   font-family: "DM Sans", sans-serif;
@@ -39,6 +39,95 @@
   justify-content: center;
 }
 
+/* Centered Logo & Quote Block */
+.oa-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 3.75rem;
+}
+
+.oa-portrait {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.oa-portrait--logo {
+  width: clamp(140px, 18vw, 210px);
+  height: clamp(140px, 18vw, 210px);
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oa-portrait-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.oa-portrait-img--logo {
+  object-fit: contain;
+  object-position: center;
+}
+
+.oa-quote {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.oa-quote-mark {
+  display: block;
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.8rem;
+  line-height: 0.7;
+  margin: 0 auto 0.6rem;
+  text-align: center;
+}
+
+.oa-quote-text {
+  margin: 0 auto;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+  line-height: 1.64;
+  text-align: center;
+  letter-spacing: -0.005em;
+}
+
+.oa-attr {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.oa-attr p {
+  margin: 0;
+  text-align: center;
+}
+
+.oa-attr p:first-child {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+.oa-attr p:last-child {
+  margin-top: 0.25rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.025em;
+  color: #888;
+}
+
+/* Pyramid with GSAP Scroll Animation */
 .oa-pyramid-wrap {
   width: 100%;
   max-width: 640px;
@@ -85,8 +174,28 @@
 /* Mobile responsive styles */
 @media (max-width: 639px) {
   .oa-section {
-    min-height: 60vh;
+    min-height: 65vh;
     padding: 3.5rem 1rem 4.5rem;
+  }
+
+  .oa-text-block {
+    margin-bottom: 2.75rem;
+  }
+
+  .oa-portrait--logo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 0.75rem;
+  }
+
+  .oa-quote-text {
+    font-size: 1.04rem;
+    line-height: 1.56;
+    padding: 0 0.25rem;
+  }
+
+  .oa-attr {
+    margin-top: 1.25rem;
   }
 
   .oa-pyramid-wrap {

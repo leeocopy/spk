@@ -33440,6 +33440,7 @@
   });
   function OurApproach() {
     const sectionRef = (0, import_react21.useRef)(null);
+    const pyramidRef = (0, import_react21.useRef)(null);
     const [hovered, setHovered] = (0, import_react21.useState)(null);
 
     (0, import_react21.useEffect)(() => {
@@ -33456,11 +33457,12 @@
         gsap.registerPlugin(ScrollTrigger);
 
         const section = sectionRef.current;
-        if (!section) return false;
+        const pyramid = pyramidRef.current;
+        if (!section || !pyramid) return false;
 
-        const tier1 = section.querySelector(".oa-tier-situations");
-        const tier2 = section.querySelector(".oa-tier-practice");
-        const tier3 = section.querySelector(".oa-tier-confidence");
+        const tier1 = pyramid.querySelector(".oa-tier-situations");
+        const tier2 = pyramid.querySelector(".oa-tier-practice");
+        const tier3 = pyramid.querySelector(".oa-tier-confidence");
         if (!tier1 || !tier2 || !tier3) return false;
 
         ctx = gsap.context(() => {
@@ -33470,9 +33472,9 @@
 
           const tl = gsap.timeline({
             scrollTrigger: {
-              trigger: section,
-              start: "top 78%",
-              end: "center 45%",
+              trigger: pyramid,
+              start: "top 80%",
+              end: "center 50%",
               scrub: 0.75,
               invalidateOnRefresh: true,
             },
@@ -33511,18 +33513,60 @@
         className: "oa-section",
         style: { fontFamily: "'DM Sans', sans-serif" },
         "aria-label": "Our Approach",
-        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", {
           className: "oa-inner",
-          children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
-            className: "oa-pyramid-wrap",
-            children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-              "svg",
-              {
-                className: "oa-pyramid-svg",
-                viewBox: "0 0 100 95",
-                fill: "none",
-                role: "img",
-                "aria-label": "Speak approach pyramid: Situations, Practice, Confidence",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", {
+              className: "oa-text-block",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+                  className: "oa-portrait oa-portrait--logo",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                    "img",
+                    {
+                      src: "./images/brand/speak-logo-ribbons.png",
+                      alt: "Speak",
+                      className: "oa-portrait-img oa-portrait-img--logo",
+                      decoding: "async",
+                      width: 420,
+                      height: 420
+                    }
+                  )
+                }),
+                /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", {
+                  className: "oa-quote",
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", {
+                      className: "oa-quote-mark",
+                      "aria-hidden": "true",
+                      children: "\u201C"
+                    }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", {
+                      className: "oa-quote-text",
+                      children: "We kept seeing the same pattern \u2014 professionals with real potential held back by English that works in theory but fails in meetings, presentations and negotiations. Speak exists to align practice, confidence and real business conversations into one clear path."
+                    }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", {
+                      className: "oa-attr",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: "Speak" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: "Corporate English & Professional Experiences" })
+                      ]
+                    })
+                  ]
+                })
+              ]
+            }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+              ref: pyramidRef,
+              className: "oa-pyramid-wrap",
+              children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                "svg",
+                {
+                  className: "oa-pyramid-svg",
+                  viewBox: "0 0 100 95",
+                  fill: "none",
+                  role: "img",
+                  "aria-label": "Speak approach pyramid: Situations, Practice, Confidence",
                 children: [
                   /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("defs", {
                     children: [
@@ -33717,8 +33761,8 @@
                 ]
               }
             )
-          })
-        })
+          }),
+        ] })
       }
     );
   }
