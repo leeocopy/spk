@@ -33439,123 +33439,286 @@
     transition: { duration: 0.55, delay: delay2, ease: EASE }
   });
   function OurApproach() {
-    const ref = (0, import_react21.useRef)(null);
-    const inView2 = useInView(ref, { once: true, amount: 0.2 });
-    const [hovered, setHovered] = (0, import_react21.useState)("practice");
-    const active = TIERS.find((t) => t.id === hovered) ?? TIERS[1];
+    const sectionRef = (0, import_react21.useRef)(null);
+    const [hovered, setHovered] = (0, import_react21.useState)(null);
+
+    (0, import_react21.useEffect)(() => {
+      let ctx;
+      let cancelled = false;
+
+      const setupScrollAnimation = () => {
+        if (cancelled) return false;
+        if (typeof window === "undefined" || !window.gsap || !window.ScrollTrigger) {
+          return false;
+        }
+        const gsap = window.gsap;
+        const ScrollTrigger = window.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const section = sectionRef.current;
+        if (!section) return false;
+
+        const tier1 = section.querySelector(".oa-tier-situations");
+        const tier2 = section.querySelector(".oa-tier-practice");
+        const tier3 = section.querySelector(".oa-tier-confidence");
+        if (!tier1 || !tier2 || !tier3) return false;
+
+        ctx = gsap.context(() => {
+          gsap.set(tier1, { y: 40, opacity: 0, scale: 0.94, transformOrigin: "50% 90%" });
+          gsap.set(tier2, { y: 32, opacity: 0, scale: 0.92, transformOrigin: "50% 60%" });
+          gsap.set(tier3, { y: 24, opacity: 0, scale: 0.88, transformOrigin: "50% 30%" });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 78%",
+              end: "center 45%",
+              scrub: 0.75,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          tl.to(tier1, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 })
+            .to(tier2, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 }, "-=0.45")
+            .to(tier3, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 }, "-=0.45");
+        }, section);
+
+        return true;
+      };
+
+      if (!setupScrollAnimation()) {
+        const interval = setInterval(() => {
+          if (setupScrollAnimation()) clearInterval(interval);
+        }, 80);
+        return () => {
+          cancelled = true;
+          clearInterval(interval);
+          ctx && ctx.revert && ctx.revert();
+        };
+      }
+
+      return () => {
+        cancelled = true;
+        ctx && ctx.revert && ctx.revert();
+      };
+    }, []);
+
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
       "section",
       {
-        ref,
+        ref: sectionRef,
         id: "approach",
         className: "oa-section",
         style: { fontFamily: "'DM Sans', sans-serif" },
         "aria-label": "Our Approach",
-        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-inner", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-header", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-header-titles", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.p, { className: "oa-title-muted", ...fade(inView2, 0), children: "Our Comprehensive" }),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.h2, { className: "oa-title-main", ...fade(inView2, 0.08), children: "Approach" })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
-              motion2.a,
+        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+          className: "oa-inner",
+          children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+            className: "oa-pyramid-wrap",
+            children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+              "svg",
               {
-                href: "#projects",
-                className: "oa-plus",
-                "aria-label": "Explore programmes",
-                ...fade(inView2, 0.15),
-                children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("path", { d: "M6 1v10M1 6h10", stroke: "currentColor", strokeWidth: "1.3" }) })
+                className: "oa-pyramid-svg",
+                viewBox: "0 0 100 95",
+                fill: "none",
+                role: "img",
+                "aria-label": "Speak approach pyramid: Situations, Practice, Confidence",
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("defs", {
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
+                        id: "oa-tier-base",
+                        x1: "50",
+                        y1: "62",
+                        x2: "50",
+                        y2: "92",
+                        gradientUnits: "userSpaceOnUse",
+                        children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#303030", stopOpacity: "0.85" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#141414", stopOpacity: "0.95" })
+                        ]
+                      }),
+                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
+                        id: "oa-tier-mid",
+                        x1: "50",
+                        y1: "32",
+                        x2: "50",
+                        y2: "62",
+                        gradientUnits: "userSpaceOnUse",
+                        children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#484848", stopOpacity: "0.88" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#1e1e1e", stopOpacity: "0.95" })
+                        ]
+                      }),
+                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
+                        id: "oa-tier-top",
+                        x1: "50",
+                        y1: "6",
+                        x2: "50",
+                        y2: "32",
+                        gradientUnits: "userSpaceOnUse",
+                        children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#6c6c6c", stopOpacity: "0.92" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#2c2c2c", stopOpacity: "0.95" })
+                        ]
+                      })
+                    ]
+                  }),
+                  /* Tier 1: Situations */
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                    "g",
+                    {
+                      className: "oa-tier-group oa-tier-situations",
+                      "data-tier": "situations",
+                      onMouseEnter: () => setHovered("situations"),
+                      onMouseLeave: () => setHovered(null),
+                      onClick: () => setHovered("situations"),
+                      tabIndex: 0,
+                      role: "button",
+                      "aria-label": "01 Situations: Meetings, pitches and negotiations where English must work",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
+                          points: "4,92 96,92 80,62 20,62",
+                          fill: "url(#oa-tier-base)",
+                          stroke: "white",
+                          strokeWidth: hovered === "situations" ? 0.65 : 0.35,
+                          strokeOpacity: hovered === "situations" ? 0.95 : 0.45,
+                          className: "oa-pyramid-tier"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "74",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.95",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "5.0",
+                          fontWeight: "600",
+                          letterSpacing: "0.06em",
+                          style: { pointerEvents: "none" },
+                          children: "01 · SITUATIONS"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "82",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.75",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "2.4",
+                          fontWeight: "400",
+                          letterSpacing: "0.015em",
+                          style: { pointerEvents: "none" },
+                          children: "Meetings, pitches & negotiations where English must work"
+                        })
+                      ]
+                    }
+                  ),
+                  /* Tier 2: Practice */
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                    "g",
+                    {
+                      className: "oa-tier-group oa-tier-practice",
+                      "data-tier": "practice",
+                      onMouseEnter: () => setHovered("practice"),
+                      onMouseLeave: () => setHovered(null),
+                      onClick: () => setHovered("practice"),
+                      tabIndex: 0,
+                      role: "button",
+                      "aria-label": "02 Practice: Coaching, workshops and events built around real work",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
+                          points: "20,62 80,62 64,32 36,32",
+                          fill: "url(#oa-tier-mid)",
+                          stroke: "white",
+                          strokeWidth: hovered === "practice" ? 0.65 : 0.35,
+                          strokeOpacity: hovered === "practice" ? 0.95 : 0.45,
+                          className: "oa-pyramid-tier"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "44",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.95",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "4.6",
+                          fontWeight: "600",
+                          letterSpacing: "0.06em",
+                          style: { pointerEvents: "none" },
+                          children: "02 · PRACTICE"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "52",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.78",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "2.3",
+                          fontWeight: "400",
+                          letterSpacing: "0.015em",
+                          style: { pointerEvents: "none" },
+                          children: "Coaching, workshops & events built around real work"
+                        })
+                      ]
+                    }
+                  ),
+                  /* Tier 3: Confidence */
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                    "g",
+                    {
+                      className: "oa-tier-group oa-tier-confidence",
+                      "data-tier": "confidence",
+                      onMouseEnter: () => setHovered("confidence"),
+                      onMouseLeave: () => setHovered(null),
+                      onClick: () => setHovered("confidence"),
+                      tabIndex: 0,
+                      role: "button",
+                      "aria-label": "03 Confidence: Presence, clarity and precision under pressure",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
+                          points: "36,32 64,32 50,6",
+                          fill: "url(#oa-tier-top)",
+                          stroke: "white",
+                          strokeWidth: hovered === "confidence" ? 0.65 : 0.35,
+                          strokeOpacity: hovered === "confidence" ? 0.95 : 0.45,
+                          className: "oa-pyramid-tier"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "19",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.98",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "3.8",
+                          fontWeight: "600",
+                          letterSpacing: "0.06em",
+                          style: { pointerEvents: "none" },
+                          children: "03 · CONFIDENCE"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "25.5",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.82",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "2.0",
+                          fontWeight: "400",
+                          letterSpacing: "0.015em",
+                          style: { pointerEvents: "none" },
+                          children: "Presence, clarity & precision"
+                        })
+                      ]
+                    }
+                  )
+                ]
               }
             )
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-text-block", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.div, { className: "oa-portrait oa-portrait--logo", ...fade(inView2, 0.12), children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
-                "img",
-                {
-                  src: "./images/brand/speak-logo-ribbons.png",
-                  alt: "Speak",
-                  className: "oa-portrait-img oa-portrait-img--logo",
-                  decoding: "async",
-                  width: 420,
-                  height: 420
-                }
-              ) }),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-quote", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.span, { className: "oa-quote-mark", ...fade(inView2, 0.18), "aria-hidden": "true", children: "\u201C" }),
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(motion2.p, { className: "oa-quote-text", ...fade(inView2, 0.22), children: "We kept seeing the same pattern \u2014 professionals with real potential held back by English that works in theory but fails in meetings, presentations and negotiations. Speak exists to align practice, confidence and real business conversations into one clear path." }),
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(motion2.div, { className: "oa-attr", ...fade(inView2, 0.28), children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: "Speak" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: "Corporate English & Professional Experiences" })
-                ] })
-              ] })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "oa-diagram", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(motion2.div, { className: "oa-pyramid", ...fade(inView2, 0.2), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-                "svg",
-                {
-                  className: "oa-pyramid-svg",
-                  viewBox: "0 0 100 90",
-                  fill: "none",
-                  role: "img",
-                  "aria-label": "Speak approach pyramid: Situations, Practice, Confidence",
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("defs", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", { id: "oa-tier-base", x1: "50", y1: "56", x2: "50", y2: "86", gradientUnits: "userSpaceOnUse", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#c3c3c2", stopOpacity: "0.22" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#c3c3c2", stopOpacity: "0.08" })
-                      ] }),
-                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", { id: "oa-tier-mid", x1: "50", y1: "28", x2: "50", y2: "56", gradientUnits: "userSpaceOnUse", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#ffffff", stopOpacity: "0.28" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#c3c3c2", stopOpacity: "0.12" })
-                      ] }),
-                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", { id: "oa-tier-top", x1: "50", y1: "4", x2: "50", y2: "28", gradientUnits: "userSpaceOnUse", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#ffffff", stopOpacity: "0.55" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#ffffff", stopOpacity: "0.18" })
-                      ] })
-                    ] }),
-                    TIERS.map((tier, i) => {
-                      const isActive = hovered === tier.id;
-                      const fills = [
-                        "url(#oa-tier-base)",
-                        "url(#oa-tier-mid)",
-                        "url(#oa-tier-top)"
-                      ];
-                      return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
-                        "polygon",
-                        {
-                          points: tier.points,
-                          fill: fills[i],
-                          stroke: "white",
-                          strokeWidth: isActive ? 0.6 : 0.3,
-                          strokeOpacity: isActive ? 1 : 0.38,
-                          className: "oa-pyramid-tier",
-                          onMouseEnter: () => setHovered(tier.id),
-                          onClick: () => setHovered(tier.id),
-                          onFocus: () => setHovered(tier.id),
-                          tabIndex: 0,
-                          role: "button",
-                          "aria-label": `${tier.label}: ${tier.detail}`
-                        },
-                        tier.id
-                      );
-                    }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "75", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.9", fontFamily: "DM Sans, sans-serif", fontSize: "5.2", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Situations" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "46", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.94", fontFamily: "DM Sans, sans-serif", fontSize: "5", fontWeight: "500", letterSpacing: "0.04em", style: { pointerEvents: "none" }, children: "Practice" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { x: "50", y: "20", textAnchor: "middle", fill: "#ffffff", fillOpacity: "0.96", fontFamily: "DM Sans, sans-serif", fontSize: "4.2", fontWeight: "600", letterSpacing: "0.02em", style: { pointerEvents: "none" }, children: "Confidence" })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-pyramid-caption", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "oa-pyramid-caption-head", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "oa-pyramid-step", children: active.step }),
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-title", children: active.label })
-                ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "oa-pyramid-caption-detail", children: active.detail })
-              ] })
-            ] }) })
-          ] })
-        ] })
+          })
+        })
       }
     );
   }

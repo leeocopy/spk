@@ -1,192 +1,262 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { useState, useRef, useEffect } from "react";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-type Tier = {
-  id: string;
-  step: string;
-  label: string;
-  detail: string;
-  points: string;
-};
-
-/** Speak approach pyramid — Situations → Practice → Confidence */
-const TIERS: Tier[] = [
-  {
-    id: "situations",
-    step: "01",
-    label: "Situations",
-    detail: "Meetings, pitches, negotiations — where English must work.",
-    points: "4,86 96,86 78,56 22,56",
-  },
-  {
-    id: "practice",
-    step: "02",
-    label: "Practice",
-    detail: "Coaching, workshops and events built around real work.",
-    points: "22,56 78,56 64,28 36,28",
-  },
-  {
-    id: "confidence",
-    step: "03",
-    label: "Confidence",
-    detail: "Presence, clarity and precision under pressure.",
-    points: "36,28 64,28 50,4",
-  },
-];
-
-const fade = (inView: boolean, delay = 0) => ({
-  initial: { opacity: 0 },
-  animate: inView ? { opacity: 1 } : { opacity: 0 },
-  transition: { duration: 0.55, delay, ease: EASE },
-});
+declare global {
+  interface Window {
+    gsap?: any;
+    ScrollTrigger?: any;
+  }
+}
 
 export default function OurApproach() {
-  const ref = useRef<HTMLElement>(null);
-  // amount (not negative margin) — more stable with Lenis scrub
-  const inView = useInView(ref, { once: true, amount: 0.2 });
-  const [hovered, setHovered] = useState<string>("practice");
+  const sectionRef = useRef<HTMLElement>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
 
-  const active = TIERS.find((t) => t.id === hovered) ?? TIERS[1];
+  useEffect(() => {
+    let ctx: any;
+    let cancelled = false;
+
+    const setupScrollAnimation = () => {
+      if (cancelled) return false;
+      if (typeof window === "undefined" || !window.gsap || !window.ScrollTrigger) {
+        return false;
+      }
+
+      const gsap = window.gsap;
+      const ScrollTrigger = window.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const section = sectionRef.current;
+      if (!section) return false;
+
+      const tier1 = section.querySelector(".oa-tier-situations");
+      const tier2 = section.querySelector(".oa-tier-practice");
+      const tier3 = section.querySelector(".oa-tier-confidence");
+
+      if (!tier1 || !tier2 || !tier3) return false;
+
+      ctx = gsap.context(() => {
+        // Initial state before entering viewport
+        gsap.set(tier1, { y: 40, opacity: 0, scale: 0.94, transformOrigin: "50% 90%" });
+        gsap.set(tier2, { y: 32, opacity: 0, scale: 0.92, transformOrigin: "50% 60%" });
+        gsap.set(tier3, { y: 24, opacity: 0, scale: 0.88, transformOrigin: "50% 30%" });
+
+        // Build & illuminate tiers with scroll
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 78%",
+            end: "center 45%",
+            scrub: 0.75,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(tier1, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 })
+          .to(tier2, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 }, "-=0.45")
+          .to(tier3, { y: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 1 }, "-=0.45");
+      }, section);
+
+      return true;
+    };
+
+    if (!setupScrollAnimation()) {
+      const interval = setInterval(() => {
+        if (setupScrollAnimation()) clearInterval(interval);
+      }, 80);
+      return () => {
+        cancelled = true;
+        clearInterval(interval);
+        ctx?.revert?.();
+      };
+    }
+
+    return () => {
+      cancelled = true;
+      ctx?.revert?.();
+    };
+  }, []);
 
   return (
     <section
-      ref={ref}
+      ref={sectionRef}
       id="approach"
       className="oa-section"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
       aria-label="Our Approach"
     >
       <div className="oa-inner">
-        <div className="oa-header">
-          <div className="oa-header-titles">
-            <motion.p className="oa-title-muted" {...fade(inView, 0)}>
-              Our Comprehensive
-            </motion.p>
-            <motion.h2 className="oa-title-main" {...fade(inView, 0.08)}>
-              Approach
-            </motion.h2>
-          </div>
-
-          <motion.a
-            href="#projects"
-            className="oa-plus"
-            aria-label="Explore programmes"
-            {...fade(inView, 0.15)}
+        <div className="oa-pyramid-wrap">
+          <svg
+            className="oa-pyramid-svg"
+            viewBox="0 0 100 95"
+            fill="none"
+            role="img"
+            aria-label="Speak approach pyramid: Situations, Practice, Confidence"
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.3" />
-            </svg>
-          </motion.a>
-        </div>
+            <defs>
+              <linearGradient id="oa-tier-base" x1="50" y1="62" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#303030" stopOpacity="0.85" />
+                <stop offset="1" stopColor="#141414" stopOpacity="0.95" />
+              </linearGradient>
+              <linearGradient id="oa-tier-mid" x1="50" y1="32" x2="50" y2="62" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#484848" stopOpacity="0.88" />
+                <stop offset="1" stopColor="#1e1e1e" stopOpacity="0.95" />
+              </linearGradient>
+              <linearGradient id="oa-tier-top" x1="50" y1="6" x2="50" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#6c6c6c" stopOpacity="0.92" />
+                <stop offset="1" stopColor="#2c2c2c" stopOpacity="0.95" />
+              </linearGradient>
+            </defs>
 
-        <div className="oa-content">
-          <div className="oa-text-block">
-            <motion.div className="oa-portrait oa-portrait--logo" {...fade(inView, 0.12)}>
-              <img
-                src="./images/brand/speak-logo-ribbons.png"
-                alt="Speak"
-                className="oa-portrait-img oa-portrait-img--logo"
-                decoding="async"
-                width={420}
-                height={420}
+            {/* TIER 1: Situations (Bottom) */}
+            <g
+              className="oa-tier-group oa-tier-situations"
+              data-tier="situations"
+              onMouseEnter={() => setHovered("situations")}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => setHovered("situations")}
+              tabIndex={0}
+              role="button"
+              aria-label="01 Situations: Meetings, pitches and negotiations where English must work"
+            >
+              <polygon
+                points="4,92 96,92 80,62 20,62"
+                fill="url(#oa-tier-base)"
+                stroke="white"
+                strokeWidth={hovered === "situations" ? 0.65 : 0.35}
+                strokeOpacity={hovered === "situations" ? 0.95 : 0.45}
+                className="oa-pyramid-tier"
               />
-            </motion.div>
-
-            <div className="oa-quote">
-              <motion.span className="oa-quote-mark" {...fade(inView, 0.18)} aria-hidden="true">
-                {"\u201C"}
-              </motion.span>
-
-              <motion.p className="oa-quote-text" {...fade(inView, 0.22)}>
-                We kept seeing the same pattern — professionals with real
-                potential held back by English that works in theory but fails
-                in meetings, presentations and negotiations. Speak exists to
-                align practice, confidence and real business conversations into
-                one clear path.
-              </motion.p>
-
-              <motion.div className="oa-attr" {...fade(inView, 0.28)}>
-                <p>Speak</p>
-                <p>Corporate English & Professional Experiences</p>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="oa-diagram">
-            <motion.div className="oa-pyramid" {...fade(inView, 0.2)}>
-              <svg
-                className="oa-pyramid-svg"
-                viewBox="0 0 100 90"
-                fill="none"
-                role="img"
-                aria-label="Speak approach pyramid: Situations, Practice, Confidence"
+              <text
+                x="50"
+                y="74"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.95"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="5.0"
+                fontWeight="600"
+                letterSpacing="0.06em"
+                style={{ pointerEvents: "none" }}
               >
-                <defs>
-                  <linearGradient id="oa-tier-base" x1="50" y1="56" x2="50" y2="86" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#c3c3c2" stopOpacity="0.22" />
-                    <stop offset="1" stopColor="#c3c3c2" stopOpacity="0.08" />
-                  </linearGradient>
-                  <linearGradient id="oa-tier-mid" x1="50" y1="28" x2="50" y2="56" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#ffffff" stopOpacity="0.28" />
-                    <stop offset="1" stopColor="#c3c3c2" stopOpacity="0.12" />
-                  </linearGradient>
-                  <linearGradient id="oa-tier-top" x1="50" y1="4" x2="50" y2="28" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#ffffff" stopOpacity="0.55" />
-                    <stop offset="1" stopColor="#ffffff" stopOpacity="0.18" />
-                  </linearGradient>
-                </defs>
+                01 · SITUATIONS
+              </text>
+              <text
+                x="50"
+                y="82"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.75"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="2.4"
+                fontWeight="400"
+                letterSpacing="0.015em"
+                style={{ pointerEvents: "none" }}
+              >
+                Meetings, pitches &amp; negotiations where English must work
+              </text>
+            </g>
 
-                {TIERS.map((tier, i) => {
-                  const isActive = hovered === tier.id;
-                  const fills = [
-                    "url(#oa-tier-base)",
-                    "url(#oa-tier-mid)",
-                    "url(#oa-tier-top)",
-                  ];
-                  return (
-                    <polygon
-                      key={tier.id}
-                      points={tier.points}
-                      fill={fills[i]}
-                      stroke="white"
-                      strokeWidth={isActive ? 0.6 : 0.3}
-                      strokeOpacity={isActive ? 1 : 0.38}
-                      className="oa-pyramid-tier"
-                      onMouseEnter={() => setHovered(tier.id)}
-                      onClick={() => setHovered(tier.id)}
-                      onFocus={() => setHovered(tier.id)}
-                      tabIndex={0}
-                      role="button"
-                      aria-label={`${tier.label}: ${tier.detail}`}
-                    />
-                  );
-                })}
+            {/* TIER 2: Practice (Middle) */}
+            <g
+              className="oa-tier-group oa-tier-practice"
+              data-tier="practice"
+              onMouseEnter={() => setHovered("practice")}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => setHovered("practice")}
+              tabIndex={0}
+              role="button"
+              aria-label="02 Practice: Coaching, workshops and events built around real work"
+            >
+              <polygon
+                points="20,62 80,62 64,32 36,32"
+                fill="url(#oa-tier-mid)"
+                stroke="white"
+                strokeWidth={hovered === "practice" ? 0.65 : 0.35}
+                strokeOpacity={hovered === "practice" ? 0.95 : 0.45}
+                className="oa-pyramid-tier"
+              />
+              <text
+                x="50"
+                y="44"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.95"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="4.6"
+                fontWeight="600"
+                letterSpacing="0.06em"
+                style={{ pointerEvents: "none" }}
+              >
+                02 · PRACTICE
+              </text>
+              <text
+                x="50"
+                y="52"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.78"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="2.3"
+                fontWeight="400"
+                letterSpacing="0.015em"
+                style={{ pointerEvents: "none" }}
+              >
+                Coaching, workshops &amp; events built around real work
+              </text>
+            </g>
 
-                <text x="50" y="75" textAnchor="middle" fill="#ffffff" fillOpacity="0.9" fontFamily="DM Sans, sans-serif" fontSize="5.2" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
-                  Situations
-                </text>
-                <text x="50" y="46" textAnchor="middle" fill="#ffffff" fillOpacity="0.94" fontFamily="DM Sans, sans-serif" fontSize="5" fontWeight="500" letterSpacing="0.04em" style={{ pointerEvents: "none" }}>
-                  Practice
-                </text>
-                <text x="50" y="20" textAnchor="middle" fill="#ffffff" fillOpacity="0.96" fontFamily="DM Sans, sans-serif" fontSize="4.2" fontWeight="600" letterSpacing="0.02em" style={{ pointerEvents: "none" }}>
-                  Confidence
-                </text>
-              </svg>
-
-              {/* No remount key — avoids layout jump while scrolling / hovering */}
-              <div className="oa-pyramid-caption">
-                <div className="oa-pyramid-caption-head">
-                  <span className="oa-pyramid-step">{active.step}</span>
-                  <p className="oa-pyramid-caption-title">{active.label}</p>
-                </div>
-                <p className="oa-pyramid-caption-detail">{active.detail}</p>
-              </div>
-            </motion.div>
-          </div>
+            {/* TIER 3: Confidence (Top) */}
+            <g
+              className="oa-tier-group oa-tier-confidence"
+              data-tier="confidence"
+              onMouseEnter={() => setHovered("confidence")}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => setHovered("confidence")}
+              tabIndex={0}
+              role="button"
+              aria-label="03 Confidence: Presence, clarity and precision under pressure"
+            >
+              <polygon
+                points="36,32 64,32 50,6"
+                fill="url(#oa-tier-top)"
+                stroke="white"
+                strokeWidth={hovered === "confidence" ? 0.65 : 0.35}
+                strokeOpacity={hovered === "confidence" ? 0.95 : 0.45}
+                className="oa-pyramid-tier"
+              />
+              <text
+                x="50"
+                y="19"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.98"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="3.8"
+                fontWeight="600"
+                letterSpacing="0.06em"
+                style={{ pointerEvents: "none" }}
+              >
+                03 · CONFIDENCE
+              </text>
+              <text
+                x="50"
+                y="25.5"
+                textAnchor="middle"
+                fill="#ffffff"
+                fillOpacity="0.82"
+                fontFamily="DM Sans, sans-serif"
+                fontSize="2.0"
+                fontWeight="400"
+                letterSpacing="0.015em"
+                style={{ pointerEvents: "none" }}
+              >
+                Presence, clarity &amp; precision
+              </text>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
