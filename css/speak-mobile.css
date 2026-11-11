@@ -1,0 +1,443 @@
+/* ============================================================
+   SPEAK — Professional mobile / tablet polish
+   Loaded last. Touches layout, type scale, overflow, tap targets.
+   Always keep Storytelling → Gallery → Networking → TEDx smooth.
+   ============================================================ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+/* ---------- Tablet & down ---------- */
+@media screen and (max-width: 991px) {
+  .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  /* Delivery formats — clean stacked cards */
+  #projects.work_wrap {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  #projects .work_grid-wrap {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.1rem;
+    width: 100%;
+  }
+
+  #projects .work_image-wrap,
+  #projects .work_description-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #projects .work_img,
+  #projects .work_img._1,
+  #projects .work_img._3 {
+    aspect-ratio: 4 / 3;
+    min-height: 0 !important;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  #projects .work_title {
+    font-size: clamp(1.45rem, 4.6vw, 1.85rem) !important;
+    line-height: 1.15;
+  }
+
+  #projects .work_p {
+    max-width: 100% !important;
+    font-size: 0.95rem !important;
+    line-height: 1.45;
+  }
+
+  #projects .work_tag-wrap {
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  #projects .divider_wrap-inner {
+    margin: 0.35rem 0;
+  }
+
+  /* With Speak — keep brand large but prevent horizontal overflow */
+  .you-can-scroll-section {
+    overflow-x: clip !important;
+  }
+
+  .ycs-header-lockup {
+    max-width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  /* Storytelling — no sticky residue, readable copy */
+  .storytelling-section {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .pin-spacer:has(.storytelling-section) {
+    height: auto !important;
+  }
+
+  .storytelling-desc {
+    text-align: left;
+    max-width: 36rem;
+    width: 100%;
+  }
+
+  .storytelling-desc p {
+    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+    line-height: 1.55;
+  }
+
+  .storytelling-content-col {
+    align-items: flex-start !important;
+    text-align: left;
+    width: 100%;
+  }
+
+  .storytelling-title {
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Gallery — free vertical scroll (pin off via JS); keep one-screen stage */
+  .zoom-slider-section,
+  .zoom-slider-section.is-mobile-gallery {
+    height: 100svh;
+    min-height: 600px;
+    max-width: 100%;
+  }
+
+  .zoom-slider-header {
+    top: clamp(4.75rem, 9vh, 6.5rem);
+    width: 92%;
+  }
+
+  .zoom-slider-title {
+    font-size: clamp(1.45rem, 5.5vw, 2.1rem);
+  }
+
+  .zoom-slider-subheading {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Nav — drawer handles ≤1199; keep Get in Touch + menu */
+  .speak-menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .speak-menu-drawer__panel {
+    width: min(100%, 100vw);
+    padding-top: max(5rem, calc(env(safe-area-inset-top) + 4.25rem));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
+  /* About */
+  .about-speak-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .about-speak-title {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+  }
+
+  .about-speak-copy {
+    text-align: left;
+    font-size: 0.98rem;
+  }
+
+  /* Networking */
+  .networking-section {
+    min-height: 70svh;
+  }
+
+  .networking-panel {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .networking-title {
+    font-size: clamp(1.85rem, 7vw, 2.75rem);
+  }
+
+  .networking-copy {
+    font-size: 0.95rem;
+    max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Events deck — mobile handled in tedx-deck.css (se-card) */
+
+  /* Services / FAQ / CTA */
+  .faq_title {
+    font-size: clamp(1.7rem, 6vw, 2.2rem) !important;
+  }
+
+  .cta_text {
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+  }
+
+  /* Footer — stack columns */
+  .footer__links-row {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2rem !important;
+    grid-template-columns: none !important;
+  }
+
+  .footer__col {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-area: auto !important;
+  }
+
+  .bottom_footer-wrap {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    grid-template-columns: none !important;
+  }
+
+  .bottom_footer-wrap > * {
+    grid-area: auto !important;
+    width: 100%;
+  }
+
+  /* Glyph portal leftover chrome */
+  .speak-glyph-portal [data-gp-choices],
+  .speak-glyph-portal [data-gp-touch-picker],
+  .speak-glyph-portal [data-gp-select],
+  .speak-glyph-portal [data-gp-enter],
+  .speak-glyph-portal [data-gp-caption],
+  .speak-glyph-portal [data-gp-hint] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+/* ---------- Phone ---------- */
+@media screen and (max-width: 640px) {
+  .nav-logo-mark {
+    width: 2.25em;
+    height: 2.25em;
+  }
+
+  .nav_btn-wrap .english-button {
+    display: none;
+  }
+
+  .button-043 {
+    min-height: 2.5rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .button-043__text {
+    font-size: 0.78rem !important;
+  }
+
+  #projects.work_wrap {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  #projects .work_label-wrap .label {
+    font-size: 0.95rem;
+  }
+
+  #projects .work_title {
+    font-size: clamp(1.35rem, 6.2vw, 1.65rem) !important;
+  }
+
+  #projects .work_p {
+    font-size: 0.9rem !important;
+  }
+
+  #projects .work_number {
+    font-size: 0.7rem;
+  }
+
+  #projects .work_tag {
+    font-size: 0.7rem;
+    padding: 0.4em 0.55em;
+  }
+
+  /* With Speak lockup — scale slightly on narrow phones to avoid clip */
+  .ycs-speak {
+    font-size: clamp(3.4rem, 14vw, 5.75rem) !important;
+  }
+
+  .ycs-with {
+    font-size: clamp(1.1rem, 3.8vw, 1.75rem) !important;
+  }
+
+  .ycs-header-mark {
+    width: clamp(3.4rem, 14vw, 5.5rem) !important;
+  }
+
+  .zoom-slider-section,
+  .zoom-slider-section.is-mobile-gallery {
+    min-height: 540px;
+    height: 100svh;
+  }
+
+  .zoom-slider-header {
+    top: max(5rem, calc(env(safe-area-inset-top) + 4rem));
+  }
+
+  .zoom-slider-nav-hint {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    gap: 1rem;
+  }
+
+  .zoom-slider-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .networking-section,
+  .networking-panel {
+    min-height: 78svh;
+  }
+
+  .networking-title {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+    line-height: 1.02;
+  }
+
+  .networking-cta {
+    min-height: 2.75rem;
+    padding: 0.75rem 1.1rem;
+  }
+
+  .storytelling-section {
+    padding-top: 4rem;
+    padding-bottom: 3.25rem;
+  }
+
+  .storytelling-title {
+    font-size: clamp(1.75rem, 8vw, 2.15rem);
+  }
+
+  .storytelling-media-col {
+    max-width: min(78vw, 280px);
+  }
+
+
+  .flashlight-hero,
+  .flashlight-footer-stage {
+    min-height: 100svh;
+    height: 100svh !important;
+  }
+
+  .flashlight-hero__writing {
+    font-size: clamp(2.4rem, 14vw, 4.5rem) !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .footer {
+    padding: 2rem 1rem 1.5rem !important;
+    gap: 2.5rem !important;
+  }
+
+  .footer__links {
+    font-size: 1.25em !important;
+  }
+
+  .footer_a,
+  .backtotop-p {
+    line-height: 1.25;
+  }
+
+  .brand-wordmark {
+    font-size: clamp(2.5rem, 16vw, 4rem) !important;
+  }
+
+  .speak-glyph-portal [data-speak-eyebrow] {
+    font-size: 11px;
+    inset-inline: 1rem;
+  }
+
+  .speak-glyph-portal [data-speak-support] {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    inset-inline: 1rem;
+    max-width: 18rem;
+  }
+
+  .speak-glyph-portal [data-speak-scroll] {
+    bottom: max(8%, env(safe-area-inset-bottom));
+    font-size: 10px;
+  }
+}
+
+/* ---------- Small phones ---------- */
+@media screen and (max-width: 390px) {
+  #projects .work_title {
+    font-size: 1.3rem !important;
+  }
+
+  .networking-copy {
+    font-size: 0.9rem;
+  }
+
+  .zoom-slider-title {
+    font-size: 1.35rem;
+  }
+
+  .ycs-speak {
+    font-size: 3.25rem !important;
+  }
+
+  .ycs-header-mark {
+    width: 3.25rem !important;
+  }
+
+  .flashlight-hero__writing {
+    font-size: clamp(2.1rem, 13vw, 3.4rem) !important;
+  }
+}
+
+/* Prefer reduced motion: keep layout, drop heavy motion cues */
+@media (prefers-reduced-motion: reduce) {
+  .zoom-slider-card:hover .zoom-slider-image-wrap img,
+  .storytelling-media-frame:hover {
+    transform: none;
+  }
+}

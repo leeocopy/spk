@@ -1,0 +1,138 @@
+.gs-root {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.gs-fill {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.gs-canvas-wrap,
+.gs-fallback {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gs-fallback {
+  opacity: 0.6;
+}
+
+.gs-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gs-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+}
+
+.networking-section {
+  position: relative;
+  width: 100%;
+  min-height: 88vh;
+  background: #000000;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.networking-section [data-gravity-networking] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.networking-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  min-height: 88vh;
+  margin: 0 auto;
+  padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 4.5vw, 3.25rem);
+  max-width: 38rem;
+  pointer-events: none;
+}
+
+.networking-eyebrow {
+  display: block;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c3c3c2;
+}
+
+.networking-title {
+  margin: 0.85rem 0 1.1rem;
+  font-family: "Garet", "Garet Heavy", Arial, sans-serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.networking-rule {
+  width: 3.25rem;
+  height: 1px;
+  margin: 0 auto 1rem;
+  background: #ffffff;
+  opacity: 0.9;
+}
+
+.networking-copy {
+  margin: 0 auto 1.75rem;
+  max-width: 28rem;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #929291;
+}
+
+.networking-cta {
+  pointer-events: auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #000000;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.networking-cta:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  .networking-section,
+  .networking-panel {
+    min-height: 78vh;
+  }
+
+  .networking-panel {
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+  }
+}

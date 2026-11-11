@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/en", "destination": "/en.html" },
+    { "source": "/en/", "destination": "/en.html" },
+    { "source": "/event", "destination": "/event.html" },
+    { "source": "/event/:year", "destination": "/event.html" }
+  ]
+}

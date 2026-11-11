@@ -1,6 +1,6 @@
 /* ==========================================================================
    SPEAK Event Detail Page Styling - Unified Brand Design System
-   Matches SPEAK luxury minimalism: warm cream #f9efe7, deep dark #111111,
+   Matches SPEAK luxury minimalism: warm cream #ffffff, deep dark #111111,
    Geist typography, frosted glass, and responsive layouts.
    ========================================================================== */
 
@@ -24,7 +24,7 @@
   --border-strong: rgba(255, 255, 255, 0.2);
   --brand-orange: #ff5500;
   --brand-red: #eb0028;
-  --brand-cream: #f9efe7;
+  --brand-cream: #ffffff;
   --radius-card: 0px;
   --radius-pill: 0px;
   --ease-swift: cubic-bezier(0.4, 0, 0.2, 1);

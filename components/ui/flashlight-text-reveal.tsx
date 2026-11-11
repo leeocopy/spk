@@ -697,14 +697,14 @@ export default function FlashlightTextReveal({
 
   return (
     <section
-      className={"relative w-full overflow-hidden " + className}
+      className={"flashlight-hero " + className}
       style={{ height, background: palette[0] }}
     >
       {failed ? (
         // No WebGL: the wall as a gradient, with a fixed light in the middle.
         <div
           aria-hidden="true"
-          className="absolute inset-0"
+          className="flashlight-hero__fallback"
           style={{
             background:
               "radial-gradient(circle at 50% 50%, " +
@@ -715,27 +715,24 @@ export default function FlashlightTextReveal({
           }}
         />
       ) : (
-        <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none absolute inset-0 block h-full w-full" />
+        <canvas ref={canvasRef} aria-hidden="true" className="flashlight-hero__canvas" />
       )}
 
       <div
         ref={writingRef}
-        className="absolute inset-0 flex items-center justify-center px-6 text-center"
+        className="flashlight-hero__writing"
         style={{
           color: textColor,
           fontFamily,
           fontSize,
-          lineHeight: 0.88,
-          letterSpacing: "0.01em",
-          whiteSpace: "pre-line",
           maskImage: initialMask,
           WebkitMaskImage: initialMask,
         }}
       >
-        <p className="m-0 font-normal uppercase">{text}</p>
+        <p className="flashlight-hero__text">{text}</p>
       </div>
 
-      {children && <div className="relative z-10 h-full w-full">{children}</div>}
+      {children && <div className="flashlight-hero__children">{children}</div>}
     </section>
   )
 }

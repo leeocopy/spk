@@ -119,8 +119,35 @@
   flex: 0 0 42%;
   max-width: 400px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.85rem;
+}
+
+.storytelling-credit {
+  width: 100%;
+  text-align: left;
+  padding: 0 0.15rem;
+}
+
+.storytelling-credit-name {
+  margin: 0;
+  font-family: "Garet", "Garet Heavy", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.storytelling-credit-role {
+  margin: 0.2rem 0 0;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c3c3c2;
 }
 
 .storytelling-media-frame {
@@ -149,6 +176,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 18%;
   display: block;
   border-radius: 0 !important;
 }
@@ -163,43 +191,63 @@
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Mobile & Tablet */
+/* Mobile & Tablet — image first, no sticky pin */
 @media (max-width: 991px) {
   .storytelling-section {
-    height: auto;
-    min-height: 100vh;
+    height: auto !important;
+    min-height: 0;
     padding: 6rem 0;
+    position: relative !important;
+  }
+
+  .storytelling-section.pin-spacer,
+  .pin-spacer:has(.storytelling-section) {
+    height: auto !important;
   }
   .storytelling-grid {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
     text-align: center;
     align-items: center;
   }
   .storytelling-content-col {
+    order: 2;
     max-width: 100%;
     align-items: center;
   }
   .storytelling-media-col {
-    max-width: 280px;
+    order: 1;
+    max-width: min(72vw, 320px);
     width: 100%;
+  }
+
+  .storytelling-credit {
+    text-align: center;
+  }
+  .storytelling-image {
+    object-position: center 12%;
   }
 }
 
 @media (max-width: 640px) {
   .storytelling-section {
-    padding: 4.5rem 0;
+    padding: 4.5rem 0 3.5rem;
   }
   .storytelling-container {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
   .storytelling-title {
     font-size: 2rem;
+    margin-bottom: 1.25rem;
   }
   .storytelling-media-col {
-    max-width: 240px;
+    max-width: min(78vw, 280px);
   }
   .storytelling-media-frame {
+    max-height: 58vh;
     border-radius: 0 !important;
+  }
+  .storytelling-image {
+    object-position: center 10%;
   }
 }

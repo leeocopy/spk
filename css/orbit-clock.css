@@ -9,7 +9,7 @@
   width: 100%;
   min-height: 82vh;
   padding: 4rem 1.5rem;
-  background-color: var(--light-bg, #f9efe7);
+  background-color: var(--light-bg, #ffffff);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,7 +43,7 @@
   --color-highlight: #ff5500;
   --color-body: rgba(28, 25, 23, 0.55);
   --color-title: #1c1917;
-  --color-ground: #f9efe7;
+  --color-ground: #ffffff;
   cursor: crosshair;
   user-select: none;
   -webkit-user-select: none;

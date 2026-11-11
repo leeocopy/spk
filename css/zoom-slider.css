@@ -58,6 +58,11 @@
   touch-action: pan-y;
 }
 
+/* Mobile/tablet: allow horizontal drag without fighting page scroll */
+.zoom-slider-section.is-mobile-gallery .zoom-slider-strip {
+  touch-action: pan-x;
+}
+
 .zoom-slider-strip.is-dragging {
   cursor: grabbing;
 }
@@ -84,33 +89,15 @@
   opacity: 0;
 }
 
-.zoom-slider-text [data-number] {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0;
-  line-height: 1;
-}
-
 .zoom-slider-text [data-title] {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #ffffff;
   margin: 0;
   line-height: 1.2;
-}
-
-.zoom-slider-text [data-desc] {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0;
-  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .zoom-slider-image-wrap {
@@ -119,8 +106,9 @@
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background-color: #111111;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.65);
   will-change: width, height;
+  aspect-ratio: 3 / 4;
 }
 
 .zoom-slider-image-wrap img {
@@ -129,7 +117,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center 20%;
   pointer-events: none;
   user-select: none;
   opacity: 1;
@@ -184,15 +172,36 @@
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 640px) {
-  .zoom-slider-section {
-    min-height: 580px;
+@media (max-width: 991px) {
+  .zoom-slider-section,
+  .zoom-slider-section.is-mobile-gallery {
+    height: 100svh;
+    min-height: 600px;
   }
-  .zoom-slider-header {
-    top: 5.25rem;
-  }
-  .zoom-slider-nav-hint {
-    bottom: 1rem;
+
+  .zoom-slider-section.is-mobile-gallery .zoom-slider-strip {
+    touch-action: pan-x;
   }
 }
 
+@media (max-width: 640px) {
+  .zoom-slider-section,
+  .zoom-slider-section.is-mobile-gallery {
+    min-height: 540px;
+    height: 100svh;
+  }
+
+  .zoom-slider-header {
+    top: max(4.75rem, calc(env(safe-area-inset-top) + 3.75rem));
+    width: min(92%, 24rem);
+  }
+
+  .zoom-slider-nav-hint {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .zoom-slider-text [data-title] {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+}

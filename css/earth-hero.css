@@ -1,0 +1,80 @@
+.earth-hero [data-earth-hero] {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.earth-hero__overlay {
+  position: absolute;
+  left: clamp(1.25rem, 4.5vw, 3.25rem);
+  right: auto;
+  top: 50%;
+  transform: translateY(-42%);
+  width: min(28rem, 46vw);
+  max-width: calc(100vw - 3rem);
+  color: #ffffff;
+  text-align: left;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.earth-hero__eyebrow {
+  display: block;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.earth-hero__overlay h1 {
+  margin: 0.85rem 0 1.1rem;
+  max-width: 100%;
+  font-family: "Garet", "Garet Heavy", Arial, sans-serif;
+  font-size: clamp(2.5rem, 5.6vw, 3.815rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.94;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.earth-hero__rule {
+  width: 3.25rem;
+  height: 1px;
+  margin: 0 0 1rem;
+  background: #ffffff;
+  opacity: 0.92;
+}
+
+.earth-hero__overlay p {
+  margin: 0;
+  max-width: 22rem;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #c3c3c2;
+}
+
+@media (max-width: 900px) {
+  .earth-hero__overlay {
+    width: min(24rem, 58vw);
+  }
+}
+
+@media (max-width: 700px) {
+  .earth-hero__overlay {
+    top: clamp(6.75rem, 15vh, 8.75rem);
+    transform: none;
+    left: 1.25rem;
+    right: 1.25rem;
+    width: auto;
+    max-width: none;
+  }
+
+  .earth-hero__overlay h1 {
+    font-size: clamp(2.1rem, 9vw, 2.85rem);
+  }
+}

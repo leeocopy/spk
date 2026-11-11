@@ -1,8 +1,7 @@
 /* ============================================================
-   STORYTELLING — Pinned Scroll Text Highlight Controller
-   - Locks section in place when fully visible in viewport
-   - Animates words sequentially from dim to pure bright white
-   - Unpins and proceeds to lower sections ONLY when text completes
+   STORYTELLING — Scroll Text Highlight Controller
+   Desktop: pins section while words illuminate
+   Mobile: no pin — photo and text scroll normally; text still highlights
    ============================================================ */
 
 (function () {
@@ -33,52 +32,86 @@
     }
 
     const targets = descEl.querySelectorAll(".originkit-word");
-    const isMobile = window.innerWidth <= 640;
 
-    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      targets.forEach((t) => (t.style.color = "#FFFFFF"));
+      return;
+    }
 
-      // Initial state: dim
-      gsap.set(targets, { color: "rgba(255, 255, 255, 0.18)" });
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.set(targets, { color: "rgba(255, 255, 255, 0.18)" });
 
-      // Highlight timeline: illuminates words one by one
-      const highlightTimeline = gsap.timeline();
-      highlightTimeline.to(targets, {
+    const mm = gsap.matchMedia();
+
+    // Desktop: pinned reveal
+    mm.add("(min-width: 992px)", () => {
+      const tl = gsap.timeline();
+      tl.to(targets, {
         color: "#FFFFFF",
         stagger: 0.1,
         ease: "none",
       });
 
-      // Pin the section: locks when fully visible, unpins only after text finishes
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => "+=" + Math.round(window.innerHeight * (isMobile ? 1.3 : 1.8)),
+        end: () => "+=" + Math.round(window.innerHeight * 1.8),
         pin: true,
         pinSpacing: true,
-        scrub: 0.3, // Nimble, light, butter-smooth
+        scrub: 0.3,
         anticipatePin: 1,
-        animation: highlightTimeline,
+        animation: tl,
       });
 
-      // Refresh ScrollTrigger and sync with Lenis
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-        if (typeof window.lenis !== "undefined" && window.lenis.resize) {
-          window.lenis.resize();
-        }
-      }, 300);
+      return () => {
+        st.kill();
+        tl.kill();
+        gsap.set(targets, { color: "rgba(255, 255, 255, 0.18)" });
+      };
+    });
 
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
-        if (typeof window.lenis !== "undefined" && window.lenis.resize) {
-          window.lenis.resize();
-        }
-      });
-    } else {
-      // Fallback
-      targets.forEach((t) => (t.style.color = "#FFFFFF"));
+    function refreshPinnedStory() {
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+      if (window.lenis && window.lenis.resize) window.lenis.resize();
     }
+    window.addEventListener("speak:layout", refreshPinnedStory);
+    setTimeout(refreshPinnedStory, 200);
+    setTimeout(refreshPinnedStory, 700);
+
+    // Mobile / tablet: no sticky — free scroll + highlight
+    mm.add("(max-width: 991px)", () => {
+      const tl = gsap.timeline();
+      tl.to(targets, {
+        color: "#FFFFFF",
+        stagger: 0.08,
+        ease: "none",
+      });
+
+      const st = ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        end: "bottom 40%",
+        scrub: 0.45,
+        pin: false,
+        animation: tl,
+      });
+
+      return () => {
+        st.kill();
+        tl.kill();
+        gsap.set(targets, { color: "rgba(255, 255, 255, 0.18)" });
+      };
+    });
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+      if (window.lenis && window.lenis.resize) window.lenis.resize();
+    }, 300);
+
+    window.addEventListener("resize", () => {
+      ScrollTrigger.refresh();
+      if (window.lenis && window.lenis.resize) window.lenis.resize();
+    });
   }
 
   if (document.readyState === "loading") {

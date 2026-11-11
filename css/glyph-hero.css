@@ -1,0 +1,124 @@
+/* Flex centering on .hero breaks sticky scroll portals — force block flow. */
+.hero:has(.glyph-hero) {
+  display: block;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.glyph-hero {
+  position: relative;
+  width: 100%;
+  /* Dark base so the exit never flashes a white void under the portal. */
+  background: #1c1c1b;
+  overflow: visible;
+  z-index: 2;
+}
+
+.glyph-hero [data-glyph-hero] {
+  position: relative;
+  width: 100%;
+}
+
+/* Soft handoff into sticky-title — short fade, no extra empty band. */
+.glyph-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, rgba(28, 28, 27, 0), #1c1c1b);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.hero:has(.glyph-hero) > .sticky-title-wrapper {
+  margin-top: -1px;
+  padding-top: 0;
+  background-color: #1c1c1b;
+  background-image: linear-gradient(180deg, #1c1c1b 0%, #1c1c1b 18%, var(--light-bg) 91%);
+}
+
+.speak-glyph-portal {
+  font-family: "Garet", Arial, sans-serif;
+  font-weight: 500;
+}
+
+.speak-glyph-portal [data-gp-glyph],
+.speak-glyph-portal [data-gp-fallback] {
+  font-family: "Garet", Arial, sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Hide portal chrome — keep only SPEAK + brand copy. */
+.speak-glyph-portal [data-gp-caption],
+.speak-glyph-portal [data-gp-hint],
+.speak-glyph-portal [data-gp-enter],
+.speak-glyph-portal [data-gp-touch-picker],
+.speak-glyph-portal [data-gp-choices] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.speak-glyph-portal [data-speak-eyebrow] {
+  position: absolute;
+  inset: auto 1.5rem calc(100% - var(--gp-word-top, 35%) + 2rem);
+  margin: 0;
+  text-align: center;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #929291;
+}
+
+.speak-glyph-portal [data-speak-support] {
+  position: absolute;
+  inset: calc(var(--gp-word-bottom, 50%) + 1.6rem) 1.5rem auto;
+  margin: 0 auto;
+  max-width: 28rem;
+  text-align: center;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.speak-glyph-portal [data-speak-scroll] {
+  position: absolute;
+  inset: auto 1.5rem 7%;
+  text-align: center;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c3c3c2;
+}
+
+.speak-glyph-portal [data-gp-content]:has([data-speak-inside-empty]) {
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0 !important;
+  background: #1c1c1b;
+}
+
+@media (max-width: 700px) {
+  .speak-glyph-portal [data-speak-support] {
+    font-size: 14px;
+  }
+}
+
+@media (any-pointer: coarse) {
+  .speak-glyph-portal [data-speak-scroll] {
+    bottom: 14%;
+  }
+}

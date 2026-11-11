@@ -12,7 +12,7 @@
   <meta content="./images/Open graph.webp" name="twitter:image">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport">
   <meta content="Webflow" name="generator">
   <link href="./css/normalize.css" rel="stylesheet" type="text/css">
   <link href="./css/webflow.css" rel="stylesheet" type="text/css">
@@ -156,12 +156,17 @@ html.lenis body {
   transition-behavior: allow-discrete;
 }
 </style>
-  <link href="./css/you-can-scroll.css?v=4" rel="stylesheet" type="text/css" />
-  <link href="./css/zoom-slider.css" rel="stylesheet" type="text/css" />
-  <link href="./css/storytelling.css" rel="stylesheet" type="text/css" />
-  <link href="./css/orbit-clock.css" rel="stylesheet" type="text/css" />
-  <link href="./css/tedx-deck.css" rel="stylesheet" type="text/css" />
-  <link href="./css/flashlight-hero.css" rel="stylesheet" type="text/css" />
+  <link href="./css/you-can-scroll.css?v=11" rel="stylesheet" type="text/css" />
+  <link href="./css/zoom-slider.css?v=8" rel="stylesheet" type="text/css" />
+  <link href="./css/storytelling.css?v=5" rel="stylesheet" type="text/css" />
+  <link href="./css/tedx-deck.css?v=8" rel="stylesheet" type="text/css" />
+  <link href="./css/glyph-hero.css?v=11" rel="stylesheet" type="text/css" />
+  <link href="./css/speak-brand.css?v=9" rel="stylesheet" type="text/css" />
+  <link href="./css/gravity-networking.css?v=2" rel="stylesheet" type="text/css" />
+  <link href="./css/flashlight-hero.css?v=3" rel="stylesheet" type="text/css" />
+  <link href="./css/speak-mobile.css?v=6" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans:500,400&display=swap" rel="stylesheet" />
+  <link href="./css/our-approach.css?v=7" rel="stylesheet" type="text/css" />
 </head>
 <body data-theme-nav="light" data-bg-nav="light" class="body">
   <div class="code-embed w-embed">
@@ -257,6 +262,7 @@ html.lenis body {
   /*scrollbar fix*/
   html {
     scrollbar-gutter: stable;
+    overflow-x: clip;
   }
   /*spli text masked for flashy text in loading*/
   [data-split='heading'] {
@@ -278,7 +284,7 @@ html.lenis body {
     color: #1c1c1b;
   }
   [data-theme-nav='dark'] .underlay-nav__container {
-    color: #f9efe7;
+    color: #ffffff;
   }
   /* Nav Logo Dynamic Theme Adaptation (Dark / Light) */
   .nav-logo-inner {
@@ -291,7 +297,7 @@ html.lenis body {
   }
   /* Background DARK -> light text */
   [data-theme-nav='dark'] .nav-logo-text {
-    color: #f9efe7 !important;
+    color: #ffffff !important;
   }
   /* Background LIGHT -> dark text */
   [data-theme-nav='light'] .nav-logo-text {
@@ -302,16 +308,16 @@ html.lenis body {
     background-color: #1c1c1b;
   }
   [data-theme-nav='dark'] .button-043__bg {
-    background-color: #f9efe7;
+    background-color: #ffffff;
   }
   /* Pulsante testo e icona */
   [data-theme-nav='light'] .button-043 {
-    color: #f9efe7 !important;
+    color: #ffffff !important;
   }
   [data-theme-nav='dark'] .button-043 {
     color: #1c1c1b !important;
     [data-theme-nav='light'] .button-043__bg-hover {
-      background-color: #f9efe7;
+      background-color: #ffffff;
     }
     [data-theme-nav='dark'] .button-043__bg-hover {
       background-color: #1c1c1b;
@@ -618,20 +624,40 @@ document.addEventListener("DOMContentLoaded", () => {
             <div id="w-node-b662fdef-1703-8e7b-a7a9-ca03ea01ab2b-52d1f8b2" class="nav_logo-wrap">
               <a aria-current='page' class='nav-logo w-inline-block w--current' href="./index.html">
                 <div class="nav-logo-inner">
-                  <div class="nav-logo-text">Speak</div>
+                  <img class="nav-logo-mark" src="./images/speak-icon.png?v=3" alt="Speak" width="44" height="44" decoding="async">
                 </div>
               </a>
             </div>
             <div id="w-node-_6669c9b6-0270-d654-1ca9-7dc7fe2b59c2-52d1f8b2" class="nav_link-wrap">
-              <a data-underline-link="" href="#projects" class="nav-underlink-link">Solutions</a>
-              <a data-underline-link="" href="#services" class="nav-underlink-link">Workshops</a>
+              <a data-underline-link="" href="#projects" class="nav-underlink-link">Programmes</a>
+              <a data-underline-link="" href="#storytelling" class="nav-underlink-link">Story</a>
+              <a data-underline-link="" href="#gallery" class="nav-underlink-link">Gallery</a>
+              <a data-underline-link="" href="#approach" class="nav-underlink-link">Approach</a>
+              <a data-underline-link="" href="#tedx-deck-section" class="nav-underlink-link">Events</a>
+              <a data-underline-link="" href="#networking" class="nav-underlink-link">Community</a>
               <a href="#projects" class="nav_link w-inline-block">
-                <div data-split-hover="out" class="nav_link-text">Solutions</div>
-                <div data-split-hover="in" class="nav_link-text copia">Solutions</div>
+                <div data-split-hover="out" class="nav_link-text">Programmes</div>
+                <div data-split-hover="in" class="nav_link-text copia">Programmes</div>
               </a>
-              <a href="#services" class="nav_link w-inline-block">
-                <div data-split-hover="out" class="nav_link-text">Workshops</div>
-                <div data-split-hover="in" class="nav_link-text copia">Workshops</div>
+              <a href="#storytelling" class="nav_link w-inline-block">
+                <div data-split-hover="out" class="nav_link-text">Story</div>
+                <div data-split-hover="in" class="nav_link-text copia">Story</div>
+              </a>
+              <a href="#gallery" class="nav_link w-inline-block">
+                <div data-split-hover="out" class="nav_link-text">Gallery</div>
+                <div data-split-hover="in" class="nav_link-text copia">Gallery</div>
+              </a>
+              <a href="#approach" class="nav_link w-inline-block">
+                <div data-split-hover="out" class="nav_link-text">Approach</div>
+                <div data-split-hover="in" class="nav_link-text copia">Approach</div>
+              </a>
+              <a href="#tedx-deck-section" class="nav_link w-inline-block">
+                <div data-split-hover="out" class="nav_link-text">Events</div>
+                <div data-split-hover="in" class="nav_link-text copia">Events</div>
+              </a>
+              <a href="#networking" class="nav_link w-inline-block">
+                <div data-split-hover="out" class="nav_link-text">Community</div>
+                <div data-split-hover="in" class="nav_link-text copia">Community</div>
               </a>
             </div>
             <div id="w-node-_04750307-ad35-8f42-d6b7-17bf2182ed2c-52d1f8b2" class="nav_btn-wrap">
@@ -730,10 +756,24 @@ document.addEventListener("DOMContentLoaded", () => {
 </style>
                 </div>
               </div>
+              <button type="button" class="speak-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="speak-menu-drawer">
+                <span class="speak-menu-toggle__bars" aria-hidden="true"></span>
+              </button>
             </div>
           </div>
         </div>
       </nav>
+      <div id="speak-menu-drawer" class="speak-menu-drawer" hidden>
+        <div class="speak-menu-drawer__panel" role="navigation" aria-label="Primary">
+          <a class="speak-menu-drawer__link" href="#projects">Programmes</a>
+          <a class="speak-menu-drawer__link" href="#storytelling">Story</a>
+          <a class="speak-menu-drawer__link" href="#gallery">Gallery</a>
+          <a class="speak-menu-drawer__link" href="#approach">Approach</a>
+          <a class="speak-menu-drawer__link" href="#tedx-deck-section">Events</a>
+          <a class="speak-menu-drawer__link" href="#networking">Community</a>
+          <a class="speak-menu-drawer__link" href="#faq">FAQ</a>
+        </div>
+      </div>
     </div>
     <div data-grain-animate="true" class="grain"></div>
     <div data-modal-group-status="not-active" class="modal">
@@ -826,16 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <div data-modal-status="not-active" data-underline-link="" data-modal-target="modal-a" class="bottom_footer">Privacy</div>
     </div>
     <div data-main="" class="hero">
-      <section data-flashlight-hero="" data-theme-section="dark" data-theme="dark" class="flashlight-hero">
-        <canvas class="flashlight-hero__canvas"></canvas>
-        <div class="flashlight-hero__fallback"></div>
-        <div class="flashlight-hero__writing">
-          <p class="flashlight-hero__text">ENGLISH
-FOR THE WAY
-BUSINESS
-MOVES</p>
-        </div>
-        <div data-rows-mobile="6" data-shutter-scroll-transition="" data-rows="16" data-rows-tablet="10" class="shutter-scroll-transition"></div>
+      <section data-theme-section="light" data-theme="light" class="glyph-hero" aria-label="Speak">
+        <div data-glyph-hero></div>
       </section>
       <section data-dots-canvas-init="" data-sticky-title="wrap" data-theme-section="dark" class="sticky-title-wrapper">
         <div class="code-embed-4 w-embed w-script">
@@ -847,7 +879,7 @@ MOVES</p>
   const dotSize = '0.125em';
   const shape = 'square'; // 'circle' or 'square'
   const dotColorInactive = 'rgba(0, 0, 0, 0.2)';
-  const dotColorActive = '#e5ccb2';
+  const dotColorActive = '#c3c3c2';
   const dotMaxScale = 1.75;
   const pressScale = 1.5;
   const hoverRadius = 10;
@@ -1088,14 +1120,6 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </section>
-      <!-- Interactive Kinetic Orbit Clock (inspired by quynh.moe) -->
-      <section id="orbit-clock-section" class="orbit_clock_section" data-theme-section="light">
-        <div class="orbit-clock-wrapper">
-          <div class="orbit-clock" id="speak-orbit-clock" aria-label="Kinetic Orbit Clock">
-            <div class="orbit-center"></div>
-          </div>
-        </div>
-      </section>
       <section id="projects" data-theme-section="light" class="work_wrap">
         <div class="container">
           <div class="work_label-wrap">
@@ -1104,199 +1128,113 @@ document.addEventListener('DOMContentLoaded', function() {
               <div id="w-node-_2ad1c25b-35d9-1307-cc60-78627b626198-52d1f8b2" class="work_divider"></div>
             </div>
           </div>
-          <a data-cursor-text="Explore" data-cursor-hover="" href="https://omaressamph.com/" target="_blank" class="work_grid-wrap w-inline-block">
+          <a data-cursor-text="Explore" data-cursor-hover="" href="mailto:Contact@speak.ma?subject=Inquiry%20-%20SPEAK" class="work_grid-wrap w-inline-block">
             <div data-cursor-image="" data-parallax="trigger" data-parallax-start="10" data-parallax-disable="mobileLandscape" data-parallax-end="-10" id="w-node-_0dda19e7-8f78-9125-3be9-29d014c5e0f9-52d1f8b2" class="work_image-wrap">
-              <div class="code-embed-10 w-embed w-script">
-                <script>
-  function initHoverVideo() {
-    document.querySelectorAll('.work_image-wrap').forEach(function (wrap) {
-      var target = wrap.querySelector('.parallax-target');
-      var img = target ? target.querySelector('.work_img') : null;
-      var video = wrap.querySelector('video');
-      if (!video) {
-        return; // nessun video in questo blocco, salta senza warning
-      }
-      wrap.style.overflow = 'hidden';
-      if (img) {
-        img.style.transition = 'filter 0.4s ease';
-        img.style.filter = 'blur(0px)';
-      }
-      video.style.opacity = '0';
-      video.style.pointerEvents = 'none';
-      video.style.transition = 'opacity 0.4s ease';
-      video.style.zIndex = '5';
-      video.muted = true;
-      video.playsInline = true;
-      video.loop = true;
-      video.style.willChange = 'opacity';
-      wrap.addEventListener('mouseenter', function () {
-        if (img) img.style.filter = 'blur(4px)';
-        video.style.opacity = '1';
-        video.currentTime = 0;
-        var p = video.play();
-        if (p) p.catch(function () {});
-      });
-      wrap.addEventListener('mouseleave', function () {
-        if (img) img.style.filter = 'blur(0px)';
-        video.style.opacity = '0';
-        video.pause();
-      });
-    });
-  }
-  if (document.readyState === 'complete') {
-    initHoverVideo();
-  } else {
-    window.addEventListener('load', initHoverVideo);
-  }
-</script>
-              </div>
-              <div class="code-embed-9 w-embed w-script"><video muted="" loop="" playsinline="" preload="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block"></video>
-                <script>
-(function () {
-  var video = document.currentScript.previousElementSibling;
-  if (window.innerWidth <= 991) return;
-  var src = "./videos/Executive 1:1 Coaching Showreel-1-1.mp4";
-  var io = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting) return;
-    io.disconnect();
-    video.preload = "auto";
-    video.src = src;
-    video.load();
-  }, { rootMargin: "400px" });
-  io.observe(video);
-})();
-</script>
-              </div>
-              <div data-parallax="target" class="parallax-target"><img src="./images/img20230227_17424584.webp" loading="lazy" width="1328" sizes="(max-width: 1919px) 100vw, 1328px" alt="Man with a beard and tied-back hair wearing a black buttoned jacket, looking up indoors near a railing and modern ceiling." srcset="./images/img20230227_17424584-p-500.webp 500w, ./images/img20230227_17424584-p-800.webp 800w, ./images/img20230227_17424584-p-1080.webp 1080w, ./images/img20230227_17424584-p-1600.webp 1600w, ./images/img20230227_17424584-p-2000.webp 2000w, ./images/img20230227_17424584-p-2600.webp 2600w, ./images/img20230227_17424584.webp 2656w" class="work_img _1"></div>
+              <div data-parallax="target" class="parallax-target"><img src="./images/formats/format-01-executive-coaching.jpg?v=1" loading="lazy" width="1328" sizes="(max-width: 1919px) 100vw, 1328px" alt="Executive one-to-one English coaching session in a modern boardroom." class="work_img _1"></div>
             </div>
             <div id="w-node-_646faa0c-4ecb-9ebf-b203-30e034602383-52d1f8b2" class="work_description-wrap">
               <div class="work_description-title">
                 <div class="work_number">01</div>
                 <h2 class="work_title">Executive 1:1 Coaching</h2>
-                <p class="work_p">Focused, confidential support on a professional&#x27;s key challenges: high-stakes negotiations, executive presentations, and cross-border leadership.</p>
+                <p class="work_p">Private, tailored English coaching designed for executives and senior professionals navigating high-stakes communication, negotiations and international leadership.</p>
               </div>
               <div class="work_tag-wrap">
                 <div class="work_tag">Bespoke</div>
-                <div class="work_tag">Executive</div>
+                <div class="work_tag">Confidential</div>
               </div>
             </div>
           </a>
           <div class="divider_wrap-inner">
             <div id="w-node-_869760a5-9d17-540c-6932-b2d7464ece36-52d1f8b2" class="work_divider"></div>
           </div>
-          <a data-cursor-text="Explore" data-cursor-hover="" href="https://jesuisvir.webflow.io/" target="_blank" class="work_grid-wrap w-inline-block">
+          <a data-cursor-text="Explore" data-cursor-hover="" href="mailto:Contact@speak.ma?subject=Inquiry%20-%20SPEAK" class="work_grid-wrap is-reversed w-inline-block">
             <div data-cursor-image="" data-parallax="trigger" data-parallax-start="10" data-parallax-disable="mobileLandscape" data-parallax-end="-10" id="w-node-_917bf1a5-c333-7b3d-2f5e-f3346d562703-52d1f8b2" class="work_image-wrap">
-              <div class="code-embed-9 w-embed w-script"><video muted="" loop="" playsinline="" preload="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block"></video>
-                <script>
-(function () {
-  var video = document.currentScript.previousElementSibling;
-  if (window.innerWidth <= 991) return;
-  var src = "./videos/Jesuisvir Showreel-1-1.mp4";
-  var io = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting) return;
-    io.disconnect();
-    video.preload = "auto";
-    video.src = src;
-    video.load();
-  }, { rootMargin: "400px" });
-  io.observe(video);
-})();
-</script>
-              </div>
-              <div data-parallax="target" class="parallax-target"><img src="./images/Screenshot-2026-07-15-144422.webp" loading="lazy" sizes="(max-width: 2441px) 100vw, 2441px" srcset="./images/Screenshot-2026-07-15-144422-p-500.webp 500w, ./images/Screenshot-2026-07-15-144422-p-800.webp 800w, ./images/Screenshot-2026-07-15-144422-p-1080.webp 1080w, ./images/Screenshot-2026-07-15-144422-p-1600.webp 1600w, ./images/Screenshot-2026-07-15-144422-p-2000.webp 2000w, ./images/Screenshot-2026-07-15-144422.webp 2441w" alt="A woman in a black bikini floating on her back in clear, calm water with her arms and legs relaxed." class="work_img"></div>
+              <div data-parallax="target" class="parallax-target"><img src="./images/formats/format-02-corporate-training.jpg?v=1" loading="lazy" sizes="(max-width: 1919px) 100vw, 1328px" alt="Corporate English training session with a professional team collaborating around a table." class="work_img"></div>
             </div>
             <div id="w-node-_917bf1a5-c333-7b3d-2f5e-f3346d562705-52d1f8b2" class="work_description-wrap">
               <div class="work_description-title">
                 <div class="work_number">02</div>
-                <h2 class="work_title">Corporate Workshops</h2>
-                <p class="work_p">Collaborative group practice around real workplace scenarios: meeting alignment, handling objections, pitching, and professional communication.</p>
+                <h2 class="work_title">Corporate English Training</h2>
+                <p class="work_p">Tailored English development programmes that equip teams with the communication skills to collaborate, perform and grow across borders.</p>
               </div>
               <div class="work_tag-wrap">
-                <div class="work_tag">Bespoke</div>
+                <div class="work_tag">Corporate</div>
+                <div class="work_tag">Tailored</div>
               </div>
             </div>
           </a>
           <div class="divider_wrap-inner">
             <div id="w-node-_1a5f5a63-8f86-fe48-9741-eb7f3cf30cef-52d1f8b2" class="work_divider"></div>
           </div>
-          <a data-cursor-text="Explore" data-cursor-hover="" href="https://lucamaglierie.it/" target="_blank" class="work_grid-wrap w-inline-block">
+          <a data-cursor-text="Explore" data-cursor-hover="" href="mailto:Contact@speak.ma?subject=Inquiry%20-%20SPEAK" class="work_grid-wrap w-inline-block">
             <div data-cursor-image="" data-parallax="trigger" data-parallax-start="10" data-parallax-disable="mobileLandscape" data-parallax-end="-10" id="w-node-b11aa419-8d5c-c247-62a8-ff9adf082042-52d1f8b2" class="work_image-wrap">
-              <div class="code-embed-9 w-embed w-script"><video muted="" loop="" playsinline="" preload="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block"></video>
-                <script>
-(function () {
-  var video = document.currentScript.previousElementSibling;
-  if (window.innerWidth <= 991) return;
-  var src = "./videos/Speak Events Showreel-1-1.mp4";
-  var io = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting) return;
-    io.disconnect();
-    video.preload = "auto";
-    video.src = src;
-    video.load();
-  }, { rootMargin: "400px" });
-  io.observe(video);
-})();
-</script>
-              </div>
-              <div data-parallax="target" class="parallax-target"><img src="./images/Screenshot-2026-07-15-160500.webp" loading="lazy" sizes="(max-width: 2442px) 100vw, 2442px" srcset="./images/Screenshot-2026-07-15-160500-p-500.webp 500w, ./images/Screenshot-2026-07-15-160500-p-800.webp 800w, ./images/Screenshot-2026-07-15-160500-p-1080.webp 1080w, ./images/Screenshot-2026-07-15-160500-p-1600.webp 1600w, ./images/Screenshot-2026-07-15-160500-p-2000.webp 2000w, ./images/Screenshot-2026-07-15-160500.webp 2442w" alt="Close-up of a white clothing label sewn onto a brown knitted garment with ribbed texture, displaying the text &#x27;LUCA MAGLIERIE&#x27; in uppercase letters." class="work_img _3"></div>
+              <div data-parallax="target" class="parallax-target"><img src="./images/formats/format-03-executive-workshops.jpg?v=1" loading="lazy" sizes="(max-width: 1919px) 100vw, 1328px" alt="Executive workshop with a professional presenting to a small group." class="work_img _3"></div>
             </div>
             <div id="w-node-b11aa419-8d5c-c247-62a8-ff9adf082044-52d1f8b2" class="work_description-wrap">
               <div class="work_description-title">
                 <div class="work_number">03</div>
-                <h2 class="work_title">Speak Events</h2>
-                <p class="work_p">Professional gatherings, keynotes, and immersive learning experiences centered on impactful workplace communication.</p>
+                <h2 class="work_title">Executive Workshops</h2>
+                <p class="work_p">Intensive, interactive experiences focused on public speaking, negotiation, presentations and leadership communication in English.</p>
               </div>
               <div class="work_tag-wrap">
-                <div class="work_tag">Workshops</div>
+                <div class="work_tag">Interactive</div>
+                <div class="work_tag">High-impact</div>
               </div>
             </div>
           </a>
           <div class="divider_wrap-inner">
             <div id="w-node-_9e38f573-8a17-eb50-ad18-9bd2862b9833-52d1f8b2" class="work_divider"></div>
           </div>
-          <a data-cursor-text="Explore" data-cursor-hover="" href="https://speak.ma/" target="_blank" class="work_grid-wrap w-inline-block">
+          <a data-cursor-text="Explore" data-cursor-hover="" href="mailto:Contact@speak.ma?subject=Inquiry%20-%20SPEAK" class="work_grid-wrap is-reversed w-inline-block">
             <div data-cursor-image="" data-parallax="trigger" data-parallax-start="10" data-parallax-disable="mobileLandscape" data-parallax-end="-10" id="w-node-_573a0686-61f4-467f-a353-027a65d74ccc-52d1f8b2" class="work_image-wrap">
-              <div class="code-embed-9 w-embed w-script"><video muted="" loop="" playsinline="" preload="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block"></video>
-                <script>
-(function () {
-  var video = document.currentScript.previousElementSibling;
-  if (window.innerWidth <= 991) return;
-  var src = "./videos/Solutions for Teams Showreel-1.mp4";
-  var io = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting) return;
-    io.disconnect();
-    video.preload = "auto";
-    video.src = src;
-    video.load();
-  }, { rootMargin: "400px" });
-  io.observe(video);
-})();
-</script>
-              </div>
-              <div data-parallax="target" class="parallax-target"><img src="./images/HP-Design.jpg.webp" loading="lazy" sizes="(max-width: 1440px) 100vw, 1440px" srcset="./images/HP-Design.jpg-p-500.webp 500w, ./images/HP-Design.jpg-p-800.webp 800w, ./images/HP-Design.jpg-p-1080.webp 1080w, ./images/HP-Design.jpg.webp 1440w" alt="Website homepage for &#x27;Team,&#x27; a collaboration platform for remote teams, featuring a woman with dreadlocks using a laptop, text about instant collaboration." class="work_img"></div>
+              <div data-parallax="target" class="parallax-target"><img src="./images/formats/format-04-corporate-seminars.jpg?v=1" loading="lazy" sizes="(max-width: 1919px) 100vw, 1328px" alt="Corporate seminar with professionals in an immersive learning circle." class="work_img"></div>
             </div>
             <div id="w-node-_573a0686-61f4-467f-a353-027a65d74ccf-52d1f8b2" class="work_description-wrap">
               <div class="work_description-title">
                 <div class="work_number">04</div>
-                <h2 class="work_title">Solutions for Teams</h2>
-                <p class="work_p">Tailored programs for corporate teams and HR/L&amp;D leaders: aligning international communication practices across global teams.</p>
+                <h2 class="work_title">Corporate Seminars &amp; Experiences</h2>
+                <p class="work_p">Immersive learning experiences that combine professional development, team interaction and meaningful communication.</p>
               </div>
               <div class="work_tag-wrap">
-                <div class="work_tag">Bespoke</div>
-                <div class="work_tag">Executive</div>
-                <div class="work_tag">B2B</div>
+                <div class="work_tag">Immersive</div>
+                <div class="work_tag">Team Development</div>
+              </div>
+            </div>
+          </a>
+          <div class="divider_wrap-inner">
+            <div id="w-node-format-05-divider-52d1f8b2" class="work_divider"></div>
+          </div>
+          <a data-cursor-text="Explore" data-cursor-hover="" href="mailto:Contact@speak.ma?subject=Inquiry%20-%20SPEAK" class="work_grid-wrap w-inline-block">
+            <div data-cursor-image="" data-parallax="trigger" data-parallax-start="10" data-parallax-disable="mobileLandscape" data-parallax-end="-10" id="w-node-format-05-image-52d1f8b2" class="work_image-wrap">
+              <div data-parallax="target" class="parallax-target"><img src="./images/formats/format-05-networking-events.jpg?v=1" loading="lazy" sizes="(max-width: 1919px) 100vw, 1328px" alt="Business networking event with professionals in conversation." class="work_img"></div>
+            </div>
+            <div id="w-node-format-05-desc-52d1f8b2" class="work_description-wrap">
+              <div class="work_description-title">
+                <div class="work_number">05</div>
+                <h2 class="work_title">Business Networking &amp; Events</h2>
+                <p class="work_p">Curated professional gatherings designed to encourage meaningful conversations, new connections and confident English communication.</p>
+              </div>
+              <div class="work_tag-wrap">
+                <div class="work_tag">Networking</div>
+                <div class="work_tag">Community</div>
               </div>
             </div>
           </a>
         </div>
         <div data-rows-mobile="6" data-shutter-scroll-transition="" data-rows="16" data-rows-tablet="10" class="shutter-scroll-transition"></div>
       </section>
+
+      <div data-our-approach data-theme-section="dark" data-theme="dark"></div>
+
             <!-- YOU CAN SCROLL COMPONENT SECTION -->
       <section class="you-can-scroll-section" data-theme-section="dark" data-theme="dark">
         <main class="ycs-main">
           <div class="ycs-content ycs-fluid">
             <div class="ycs-header">
-              <h2 class="ycs-header-title">With Speak</h2>
+              <div class="ycs-header-lockup">
+                <p class="ycs-header-title"><span class="ycs-with">With</span> <span class="ycs-speak">Speak</span></p>
+                <img class="ycs-header-mark" src="./images/speak-mark.png" alt="" width="88" height="88" decoding="async" />
+              </div>
             </div>
             <div class="ycs-sticky-row">
               <h2 class="ycs-prefix">You can</h2>
@@ -1323,99 +1261,119 @@ document.addEventListener('DOMContentLoaded', function() {
         </main>
       </section>
       <!-- END YOU CAN SCROLL COMPONENT SECTION -->
+      <!-- STORYTELLING SECTION -->
+      <section id="storytelling" class="storytelling-section" data-theme-section="dark" data-theme="dark">
+        <div class="storytelling-container">
+          <div class="storytelling-grid">
+            <!-- Left: Title & Text -->
+            <div class="storytelling-content-col">
+              <h2 class="storytelling-title">Where English Connects</h2>
+              <div class="storytelling-desc">
+                <p>I came to Speak for the workshop. I didn't expect to leave with so much more. At Speak, I found myself having coffee with a marketer, while I work in finance, exchanging ideas about how we approach projects differently. I met a business owner who had already faced a challenge I was struggling with.</p>
+                <p>These are the kinds of conversations and connections I might have missed if I'd stayed within my usual professional circle.</p>
+                <p>And that's when I realised: the real value wasn't just what I learned, but also the people I met, the perspectives I discovered and the opportunities that came with them.</p>
+                <p>That's what Speak is about. Speak creates the space for these encounters — bringing together people, expertise and ideas that might never have crossed paths otherwise.</p>
+                <p>All in English. In inspiring settings. In Marrakech.</p>
+              </div>
+            </div>
+
+            <!-- Right: Single 9*16 Image -->
+            <div class="storytelling-media-col">
+              <div class="storytelling-media-frame">
+                <img
+                  class="storytelling-image"
+                  src="./images/storytelling/beyond-workshop.jpg?v=1"
+                  alt="Sara Mansouri, Finance Manager at a Speak experience in Marrakech"
+                  loading="lazy"
+                />
+              </div>
+              <div class="storytelling-credit">
+                <p class="storytelling-credit-name">Sara Mansouri</p>
+                <p class="storytelling-credit-role">Finance Manager</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END STORYTELLING SECTION -->
+
       <!-- ZOOM SLIDER COMPONENT SECTION -->
-      <section class="zoom-slider-section" data-theme-section="dark" data-theme="dark">
+      <section id="gallery" class="zoom-slider-section" data-theme-section="dark" data-theme="dark">
         <div class="zoom-slider-header">
-          <h2 class="zoom-slider-title">SPEAK Corporate Vault</h2>
-          <p class="zoom-slider-subheading">Drag horizontally to explore high-impact scenarios</p>
+          <h2 class="zoom-slider-title">Speak Gallery</h2>
+          <p class="zoom-slider-subheading">Drag horizontally to explore the moments</p>
         </div>
 
         <div class="zoom-slider-strip">
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>01</p>
-              <p data-title>Executive Alignment</p>
-              <p data-desc>Boardroom impact and leadership discourse</p>
+              <p data-title>Evening Networking</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-01.jpeg?v=2" alt="Executive Alignment" />
+              <img src="./images/vault/vault-01.jpeg?v=2" alt="Evening Networking" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>02</p>
-              <p data-title>Strategic Keynotes</p>
-              <p data-desc>Inspiring global summits and conventions</p>
+              <p data-title>Corporate Workshop</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-02.jpeg?v=2" alt="Strategic Keynotes" />
+              <img src="./images/vault/vault-02.jpeg?v=2" alt="Corporate Workshop" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>03</p>
-              <p data-title>High-Stakes Pitch</p>
-              <p data-desc>Convincing investors and closing alliances</p>
+              <p data-title>Public Speaking</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-03.jpeg?v=2" alt="High-Stakes Pitch" />
+              <img src="./images/vault/vault-03.jpeg?v=2" alt="Public Speaking" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>04</p>
-              <p data-title>Cross-Border Teams</p>
-              <p data-desc>Multicultural harmony in Fortune 500 teams</p>
+              <p data-title>Rooftop Connections</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-04.jpeg?v=2" alt="Cross-Border Teams" />
+              <img src="./images/vault/vault-04.jpeg?v=2" alt="Rooftop Connections" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>05</p>
-              <p data-title>Crisis Speech</p>
-              <p data-desc>Calm authority under corporate pressure</p>
+              <p data-title>Business Conversations</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-05.jpeg?v=2" alt="Crisis Speech" />
+              <img src="./images/vault/vault-05.jpeg?v=2" alt="Business Conversations" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>06</p>
-              <p data-title>Executive Retreats</p>
-              <p data-desc>Intensive 3-day immersive communication</p>
+              <p data-title>English Workshop</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-06.jpeg?v=2" alt="Executive Retreats" />
+              <img src="./images/vault/vault-06.jpeg?v=2" alt="English Workshop" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>07</p>
-              <p data-title>Media Training</p>
-              <p data-desc>Broadcast confidence for CEOs and directors</p>
+              <p data-title>Speak Community</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-07.jpeg?v=2" alt="Media Training" />
+              <img src="./images/vault/vault-07.jpeg?v=2" alt="Speak Community" />
             </div>
           </div>
 
           <div class="zoom-slider-card">
             <div class="zoom-slider-text">
-              <p data-number>08</p>
-              <p data-title>Change Dynamics</p>
-              <p data-desc>Guiding restructuring with empathy and force</p>
+              <p data-title>Executive Session</p>
             </div>
             <div class="zoom-slider-image-wrap">
-              <img src="./images/vault/vault-08.jpeg?v=2" alt="Change Dynamics" />
+              <img src="./images/vault/vault-08.jpeg?v=2" alt="Executive Session" />
             </div>
           </div>
         </div>
@@ -1432,283 +1390,185 @@ document.addEventListener('DOMContentLoaded', function() {
       </section>
       <!-- END ZOOM SLIDER SECTION -->
 
-      <!-- STORYTELLING SECTION -->
-      <section id="storytelling" class="storytelling-section" data-theme-section="dark" data-theme="dark">
-        <div class="storytelling-container">
-          <div class="storytelling-grid">
-            <!-- Left: Title & Text -->
-            <div class="storytelling-content-col">
-              <h2 class="storytelling-title">Beyond the Workshop</h2>
-              <div class="storytelling-desc">
-                <p>I came to Speak for the workshop. I didn't expect to leave with so much more. At Speak, I found myself having coffee with a marketer, while I work in finance, exchanging ideas about how we approach projects differently. I met a business owner who had already faced a challenge I was struggling with.</p>
-                <p>These are the kinds of conversations and connections I might have missed if I'd stayed within my usual professional circle.</p>
-                <p>And that's when I realised: the real value wasn't just what I learned, but also the people I met, the perspectives I discovered and the opportunities that came with them.</p>
-                <p>That's what Speak is about. Speak creates the space for these encounters — bringing together people, expertise and ideas that might never have crossed paths otherwise.</p>
-                <p>All in English. In inspiring settings. In Marrakech.</p>
-              </div>
-            </div>
-
-            <!-- Right: Single 9*16 Image -->
-            <div class="storytelling-media-col">
-              <div class="storytelling-media-frame">
-                <img
-                  class="storytelling-image"
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=900&auto=format&fit=crop"
-                  alt="Executive Storytelling"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+      <section id="networking" class="networking-section" data-theme-section="dark" data-theme="dark" aria-label="Networking">
+        <div data-gravity-networking></div>
       </section>
-      <!-- END STORYTELLING SECTION -->
 
-      <!-- TEDxPortland Hero Event Deck (Reverse Engineered) -->
-      <section id="tedx-deck-section" class="tedx-deck-section" data-theme-section="dark" data-theme="dark" aria-label="Annual Event Showcase by Year">
+<!-- Speak Events — Past & Upcoming cards -->
+      <section id="tedx-deck-section" class="tedx-deck-section speak-events-section" data-theme-section="dark" data-theme="dark" aria-label="Speak Events">
+        <header class="se-header">
+          <h2 class="se-header-title">Events</h2>
+        </header>
         <div class="tedx-slider-container">
-                    <div class="tedx-track">
-            <!-- Year 15 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=15" class="tedx-card" aria-label="Year 15">
-                <div class="tedx-card-media">
-                  <video class="tedx-card-video" src="./images/tedx/year15-video.mp4" poster="./images/tedx/year15-poster.webp" muted playsinline loop autoplay></video>
+          <div class="tedx-track speak-events-track">
+
+            <div class="tedx-card-col speak-events-col">
+              <a href="./event.html?id=executive-communication" class="tedx-card se-card is-past" data-event-status="past" aria-label="Past event — Executive Communication in English">
+                <div class="se-media">
+                  <img src="./images/formats/format-03-executive-workshops.jpg?v=1" alt="" loading="lazy">
                 </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">15</span>
+                <div class="se-overlay" aria-hidden="true"></div>
+                <div class="se-inner">
+                  <div class="se-top">
+                    <div class="se-when">
+                      <span class="se-when-month">May</span>
+                      <span class="se-when-day">09</span>
+                    </div>
+                    <div class="se-brand">
+                      <span class="se-brand-speak">Speak</span>
+                      <span class="se-brand-events">EVENTS</span>
+                    </div>
                   </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">Save the Date<br>May 29, 2027</span>
+                  <div class="se-mid">
+                    <span class="se-tag">Workshop</span>
+                    <h3 class="se-title">Executive Communication in English</h3>
+                  </div>
+                  <div class="se-bottom">
+                    <p class="se-loc">
+                      <svg class="se-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+                      Marrakech
+                    </p>
+                    <span class="se-cta">PAST EVENT</span>
                   </div>
                 </div>
               </a>
             </div>
 
-            <!-- Year 14 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=14" class="tedx-card" aria-label="Year 14 — Homecoming">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year14-bg.webp" alt="Year 14 — Homecoming" loading="lazy">
+            <div class="tedx-card-col speak-events-col">
+              <a href="./event.html?id=leading-meetings" class="tedx-card se-card is-past" data-event-status="past" aria-label="Past event — Leading Meetings with Clarity">
+                <div class="se-media">
+                  <img src="./images/formats/format-02-corporate-training.jpg?v=1" alt="" loading="lazy">
                 </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">14</span>
+                <div class="se-overlay" aria-hidden="true"></div>
+                <div class="se-inner">
+                  <div class="se-top">
+                    <div class="se-when">
+                      <span class="se-when-month">Apr</span>
+                      <span class="se-when-day">18</span>
+                    </div>
+                    <div class="se-brand">
+                      <span class="se-brand-speak">Speak</span>
+                      <span class="se-brand-events">EVENTS</span>
+                    </div>
                   </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 11, 2026</span>
+                  <div class="se-mid">
+                    <span class="se-tag">Seminar</span>
+                    <h3 class="se-title">Leading Meetings with Clarity</h3>
                   </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year14-homecoming.svg" alt="Year 14 — Homecoming" style="--logo-ratio: 0.1431">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 13 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=13" class="tedx-card" aria-label="Year 13 — CONTINUUM">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year13-bg.webp" alt="Year 13 — CONTINUUM" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">13</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 26, 2025</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year13-continuum.svg" alt="Year 13 — CONTINUUM" style="--logo-ratio: 0.1128">
+                  <div class="se-bottom">
+                    <p class="se-loc">
+                      <svg class="se-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+                      Marrakech
+                    </p>
+                    <span class="se-cta">PAST EVENT</span>
                   </div>
                 </div>
               </a>
             </div>
 
-            <!-- Year 12 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=12" class="tedx-card" aria-label="Year 12 — Alchemy">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year12-bg.webp" alt="Year 12 — Alchemy" loading="lazy">
+            <div class="tedx-card-col speak-events-col">
+              <a href="./event.html?id=project-management-ai" class="tedx-card se-card is-upcoming" data-event-status="upcoming" aria-label="Upcoming event — Project Management Augmented by AI">
+                <div class="se-media">
+                  <img src="./images/formats/format-01-executive-coaching.jpg?v=1" alt="" loading="lazy">
                 </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">12</span>
+                <div class="se-overlay" aria-hidden="true"></div>
+                <div class="se-glow" aria-hidden="true"></div>
+                <div class="se-inner">
+                  <div class="se-top">
+                    <div class="se-when">
+                      <span class="se-when-month">Dec</span>
+                      <span class="se-when-day">12</span>
+                    </div>
+                    <div class="se-brand">
+                      <span class="se-brand-speak">Speak</span>
+                      <span class="se-brand-events">EVENTS</span>
+                    </div>
                   </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 27, 2024</span>
+                  <div class="se-mid">
+                    <span class="se-tag">Workshop</span>
+                    <h3 class="se-title">Project Management Augmented by AI</h3>
+                    <p class="se-desc">Gain efficiency with AI applied to project delivery.</p>
                   </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year12-alchemy.svg" alt="Year 12 — Alchemy" style="--logo-ratio: 0.1520">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 11 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=11" class="tedx-card" aria-label="Year 11 — Confluence">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year11-bg.webp" alt="Year 11 — Confluence" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">11</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">May 20, 2023</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year11-confluence.svg" alt="Year 11 — Confluence" style="--logo-ratio: 0.1086">
+                  <div class="se-bottom">
+                    <p class="se-loc">
+                      <svg class="se-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+                      Marrakech
+                    </p>
+                    <span class="se-cta">UPCOMING EVENT</span>
                   </div>
                 </div>
               </a>
             </div>
 
-            <!-- Year 10 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=10" class="tedx-card" aria-label="Year 10 — Audacious">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year10-bg.webp" alt="Year 10 — Audacious" loading="lazy">
+            <div class="tedx-card-col speak-events-col">
+              <a href="./event.html?id=pitch-with-presence" class="tedx-card se-card is-upcoming" data-event-status="upcoming" aria-label="Upcoming event — Pitch with Presence">
+                <div class="se-media">
+                  <img src="./images/formats/format-04-corporate-seminars.jpg?v=1" alt="" loading="lazy">
                 </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">10</span>
+                <div class="se-overlay" aria-hidden="true"></div>
+                <div class="se-glow" aria-hidden="true"></div>
+                <div class="se-inner">
+                  <div class="se-top">
+                    <div class="se-when">
+                      <span class="se-when-month">Jan</span>
+                      <span class="se-when-day">23</span>
+                    </div>
+                    <div class="se-brand">
+                      <span class="se-brand-speak">Speak</span>
+                      <span class="se-brand-events">EVENTS</span>
+                    </div>
                   </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">May 22, 2022</span>
+                  <div class="se-mid">
+                    <span class="se-tag">Public speak</span>
+                    <h3 class="se-title">Pitch with Presence</h3>
+                    <p class="se-desc">Own the room: structure, voice and confidence under pressure.</p>
                   </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year10-audacious.svg" alt="Year 10 — Audacious" style="--logo-ratio: 0.3361">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 9 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=9" class="tedx-card" aria-label="Year 9 — Re.Imagine">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year9-bg.webp" alt="Year 9 — Re.Imagine" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">9</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 27, 2019</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year9-reimagine.svg" alt="Year 9 — Re.Imagine" style="--logo-ratio: 0.1905">
+                  <div class="se-bottom">
+                    <p class="se-loc">
+                      <svg class="se-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+                      Marrakech
+                    </p>
+                    <span class="se-cta">UPCOMING EVENT</span>
                   </div>
                 </div>
               </a>
             </div>
 
-            <!-- Year 8 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=8" class="tedx-card" aria-label="Year 8 — Bridges">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year8-bg.webp" alt="Year 8 — Bridges" loading="lazy">
+            <div class="tedx-card-col speak-events-col">
+              <a href="./event.html?id=evening-conversations" class="tedx-card se-card is-upcoming" data-event-status="upcoming" aria-label="Upcoming event — Evening Conversations">
+                <div class="se-media">
+                  <img src="./images/formats/format-05-networking-events.jpg?v=1" alt="" loading="lazy">
                 </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">8</span>
+                <div class="se-overlay" aria-hidden="true"></div>
+                <div class="se-glow" aria-hidden="true"></div>
+                <div class="se-inner">
+                  <div class="se-top">
+                    <div class="se-when">
+                      <span class="se-when-month">Mar</span>
+                      <span class="se-when-day">06</span>
+                    </div>
+                    <div class="se-brand">
+                      <span class="se-brand-speak">Speak</span>
+                      <span class="se-brand-events">EVENTS</span>
+                    </div>
                   </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 21, 2018</span>
+                  <div class="se-mid">
+                    <span class="se-tag">Networking</span>
+                    <h3 class="se-title">Evening Conversations</h3>
+                    <p class="se-desc">Meet professionals in English — ideas, introductions, real exchange.</p>
                   </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year8-bridges.svg" alt="Year 8 — Bridges" style="--logo-ratio: 0.3077">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 7 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=7" class="tedx-card" aria-label="Year 7 — Spectrum">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year7-bg.webp" alt="Year 7 — Spectrum" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">7</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 15, 2017</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year7-spectrum.svg" alt="Year 7 — Spectrum" style="--logo-ratio: 0.1457">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 6 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=6" class="tedx-card" aria-label="Year 6 — Wonderland">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year6-bg.webp" alt="Year 6 — Wonderland" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">6</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">April 7, 2016</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year6-wonderland.svg" alt="Year 6 — Wonderland" style="--logo-ratio: 0.1602">
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Year 5 -->
-            <div class="tedx-card-col">
-              <a href="./event.html?year=5" class="tedx-card" aria-label="Year 5 — Tomorrows">
-                <div class="tedx-card-media">
-                  <img class="tedx-card-img" src="./images/tedx/year5-bg.webp" alt="Year 5 — Tomorrows" loading="lazy">
-                </div>
-                <div class="tedx-card-overlay"></div>
-                <div class="tedx-card-inner">
-                  <div class="tedx-year-wrap">
-                    <span class="tedx-year-label">Year</span>
-                    <span class="tedx-year-num">5</span>
-                  </div>
-                  <div class="tedx-date-wrap">
-                    <span class="tedx-date-text">May 30, 2015</span>
-                  </div>
-                  <div class="tedx-logo-wrap">
-                    <img class="tedx-year-logo" src="./images/tedx/year5-tomorrows.svg" alt="Year 5 — Tomorrows" style="--logo-ratio: 0.5594">
+                  <div class="se-bottom">
+                    <p class="se-loc">
+                      <svg class="se-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+                      Marrakech
+                    </p>
+                    <span class="se-cta">UPCOMING EVENT</span>
                   </div>
                 </div>
               </a>
             </div>
 
           </div>
-          <!-- Navigation Controls -->
           <button type="button" class="tedx-nav-btn tedx-nav-prev is-hidden" aria-label="Previous">
             <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="transform: scaleX(-1);"><path d="M5 2l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
@@ -1717,9 +1577,9 @@ document.addEventListener('DOMContentLoaded', function() {
           </button>
         </div>
       </section>
-      <!-- END TEDxPortland Hero Event Deck -->
+      <!-- END Speak Events -->
 
-<section id="services" data-theme-section="dark" class="services_wrap section-dark">
+      <section id="services" data-theme-section="dark" class="services_wrap section-dark">
         <div class="container">
           <div class="services_label-wrap">
             <div class="label light">Key Communication Situations</div>
@@ -1857,8 +1717,9 @@ if (servicesSection && 'IntersectionObserver' in window) {
           </div>
         </div>
       </section>
+      
       <div class="faq_footer-main">
-        <div data-theme-section="dark" class="faq_wrap section-dark">
+        <div id="faq" data-theme-section="dark" class="faq_wrap section-dark">
           <div class="container">
             <div class="faq_label-wrap">
               <div class="label light">FAQ</div>
@@ -2167,8 +2028,13 @@ if (servicesSection && 'IntersectionObserver' in window) {
               <div id="w-node-_386ae7b8-f528-cdc0-a7be-29b5f12de6e2-52d1f8b2" class="footer__col">
                 <p class="top_footer-p">Navigation</p>
                 <div class="footer__links">
-                  <a data-underline-link="" href="#projects" class="footer_a">Solutions</a>
-                  <a data-underline-link="" href="#services" class="footer_a">Workshops</a>
+                  <a data-underline-link="" href="#projects" class="footer_a">Programmes</a>
+                  <a data-underline-link="" href="#storytelling" class="footer_a">Story</a>
+                  <a data-underline-link="" href="#approach" class="footer_a">Approach</a>
+                  <a data-underline-link="" href="#gallery" class="footer_a">Gallery</a>
+                  <a data-underline-link="" href="#tedx-deck-section" class="footer_a">Events</a>
+                  <a data-underline-link="" href="#networking" class="footer_a">Community</a>
+                  <a data-underline-link="" href="#faq" class="footer_a">FAQ</a>
                   <div data-underline-link="" data-back-to-top="wrap" class="backtotop-wrap">
                     <a data-back-to-top="button" href="#" class="backtotop-p w-button">Back to top</a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="svg-7 up">
                       <path d="M9.0101 16H6.9899L6.9899 3.87879L1.43434 9.43434L-6.7435e-07 8L8 0L16 8L14.5657 9.43434L9.0101 3.87879L9.0101 16Z" fill="currentColor"></path>
@@ -2244,6 +2110,10 @@ if (servicesSection && 'IntersectionObserver' in window) {
           </footer>
           <div data-footer-parallax-dark="" class="footer-wrap__dark"></div>
         </footer>
+        
+      <section id="flashlight-footer" class="flashlight-footer" data-theme-section="dark" data-theme="dark" aria-label="English Happens">
+          <div data-flashlight-footer></div>
+        </section>
       </div>
     </div>
   </div>
@@ -2797,11 +2667,14 @@ gsap.from('.logo_hero-wrapper', {
     import { Pane } from './js/tweakpane.min.js';
     window.Pane = Pane;
   </script>
-  <script src="./js/you-can-scroll.js?v=4" type="text/javascript"></script>
-  <script src="./js/zoom-slider.js" type="text/javascript"></script>
-  <script src="./js/storytelling.js" type="text/javascript"></script>
-  <script src="./js/orbit-clock.js" type="text/javascript"></script>
+  <script src="./js/speak-nav.js?v=1" type="text/javascript"></script>
+  <script src="./js/our-approach.js?v=7" type="text/javascript"></script>
+  <script src="./js/you-can-scroll.js?v=9" type="text/javascript"></script>
+  <script src="./js/storytelling.js?v=5" type="text/javascript"></script>
+  <script src="./js/zoom-slider.js?v=8" type="text/javascript"></script>
   <script src="./js/tedx-deck.js" type="text/javascript"></script>
-  <script src="./js/flashlight-hero.js" type="text/javascript"></script>
+  <script src="./js/glyph-hero.js?v=10" type="text/javascript"></script>
+  <script src="./js/gravity-networking.js?v=2" type="text/javascript"></script>
+  <script src="./js/flashlight-footer.js?v=2" type="text/javascript"></script>
 </body>
 </html>

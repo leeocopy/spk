@@ -1,6 +1,6 @@
 /* ============================================================
    YOU CAN SCROLL — Monochrome Kinetic Typography Controller
-   Pure Black, White & Silver Gradient Theme
+   Brand lockup exits upward as "You can" takes the stage.
    ============================================================ */
 
 (function () {
@@ -17,80 +17,75 @@
     if (!items || !items.length) return;
 
     const header = section ? section.querySelector(".ycs-header") : null;
+    const prefix = section ? section.querySelector(".ycs-prefix") : null;
+
     if (header) {
       gsap.set(header, { opacity: 1, y: 0 });
 
-      // Stays 100% visible when the section arrives with "You can lead." in center.
-      // Has a stable dwell zone so the entire section ("With Speak" + "You can lead.")
-      // is completely visible at rest, and only smoothly fades out when the user scrolls
-      // past "lead." (between 40px and 150px) before "negotiate." arrives.
-      gsap.fromTo(
-        header,
-        { opacity: 1, y: 0 },
-        {
-          opacity: 0,
-          y: -28,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: items[0],
-            start: "center center-=40",
-            end: "center center-=150",
-            scrub: 0.1,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
+      // As soon as "You can" reaches stage, send With Speak + mark upward.
+      gsap.to(header, {
+        opacity: 0,
+        y: -72,
+        ease: "power2.in",
+        scrollTrigger: {
+          trigger: prefix || items[0],
+          start: "top 62%",
+          end: "top 42%",
+          scrub: 0.45,
+          invalidateOnRefresh: true,
+        },
+      });
     }
 
-    let dimmerScrub = null;
+    const inactive = { opacity: 0.28 };
+    const active = { opacity: 0.92 };
 
-    // Initial state: first item bright, others dimmed
     gsap.set(items, {
-      opacity: (i) => (i !== 0 ? 0.22 : 1),
-      scale: (i) => (i !== 0 ? 1 : 1.04),
-      filter: (i) =>
-        i !== 0
-          ? "brightness(0.65)"
-          : "brightness(1.35) drop-shadow(0 0 35px rgba(255, 255, 255, 0.45))",
+      opacity: (i) => (i === 0 ? active.opacity : inactive.opacity),
+      scale: 1,
+      filter: "none",
+      color: (i) => (i === 0 ? "#ffffff" : "#c3c3c2"),
+      webkitTextFillColor: (i) => (i === 0 ? "#ffffff" : "#c3c3c2"),
     });
 
+    const step = 0.85;
     const dimmer = gsap.timeline();
     for (let i = 0; i < items.length; i++) {
       if (i > 0) {
         dimmer.to(
           items[i],
           {
-            opacity: 1,
-            scale: 1.04,
-            filter: "brightness(1.35) drop-shadow(0 0 35px rgba(255, 255, 255, 0.45))",
-            duration: 0.5,
+            opacity: active.opacity,
+            color: "#ffffff",
+            webkitTextFillColor: "#ffffff",
+            duration: step,
             ease: "power1.inOut",
           },
-          (i - 1) * 0.5
+          (i - 1) * step
         );
       }
       if (i < items.length - 1) {
         dimmer.to(
           items[i],
           {
-            opacity: 0.22,
-            scale: 1,
-            filter: "brightness(0.65)",
-            duration: 0.5,
+            opacity: inactive.opacity,
+            color: "#c3c3c2",
+            webkitTextFillColor: "#c3c3c2",
+            duration: step,
             ease: "power1.inOut",
           },
-          i * 0.5
+          i * step
         );
       }
     }
 
-    dimmerScrub = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: items[0],
       endTrigger: items[items.length - 1],
       start: "center center",
       end: "center center",
       animation: dimmer,
-      scrub: 0.2,
+      scrub: 0.65,
     });
 
     setTimeout(() => {

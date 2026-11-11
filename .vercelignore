@@ -1,0 +1,9 @@
+node_modules
+.git
+components
+*.md
+_*.py
+.DS_Store
+.env
+.env.*
+agent-transcripts

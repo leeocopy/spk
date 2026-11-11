@@ -1,32 +1,55 @@
 /* ==========================================================================
-   TEDx Portland Event Hero Deck - Reverse Engineered Component
-   Horizontal accordion card deck with device-pixel lift, 3D pointer parallax,
-   media zoom, vertical typography, and smooth drag/button slider navigation.
+   Speak Events cards — past / upcoming
+   UI: date stack + brand · tag · title · (desc) · loc · CTA
    ========================================================================== */
 
 :root {
   --tedx-ease-swift: cubic-bezier(0.4, 0, 0.2, 1);
-  --tedx-ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
-  --tedx-radius-card: 1.25rem;
+  --speak-event-red: #e10600;
+  --speak-event-red-glow: rgba(225, 6, 0, 0.5);
+  --se-pad: 1.35rem;
+  --se-radius: 1.25rem;
 }
 
-.tedx-deck-section {
+.tedx-deck-section,
+.speak-events-section {
   position: relative;
   width: 100%;
-  background-color: #0d0d0d;
-  color: #ffffff;
-  padding: 0;
+  background: #050505;
+  color: #fff;
+  padding: 2.75rem 0 3.25rem;
   overflow: hidden;
   box-sizing: border-box;
   user-select: none;
   -webkit-user-select: none;
 }
 
+.se-header {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .se-header {
+    padding: 0 2rem 1.5rem;
+  }
+}
+
+.se-header-title {
+  margin: 0;
+  font-family: Garet, "Garet Heavy", Arial, sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+}
+
 .tedx-deck-section * {
   box-sizing: border-box;
 }
 
-/* Slider Container */
 .tedx-slider-container {
   position: relative;
   width: 100%;
@@ -35,12 +58,12 @@
   margin: 0;
 }
 
-/* Scroll Track */
-.tedx-track {
+.tedx-track,
+.speak-events-track {
   display: flex;
   align-items: stretch;
-  gap: 0;
-  padding: 0;
+  gap: 0.85rem;
+  padding: 0.5rem 1rem 1.25rem;
   margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -49,6 +72,23 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   cursor: grab;
+  touch-action: pan-x;
+}
+
+@media (min-width: 768px) {
+  .tedx-track,
+  .speak-events-track {
+    gap: 1rem;
+    padding: 0.75rem 1.75rem 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tedx-track,
+  .speak-events-track {
+    gap: 1.1rem;
+    padding: 1rem 2.25rem 1.75rem;
+  }
 }
 
 .tedx-track::-webkit-scrollbar {
@@ -61,173 +101,381 @@
   scroll-snap-type: none !important;
 }
 
-/* Card Column */
-.tedx-card-col {
+/* Card column — ~1.15 visible on mobile, ~4 on desktop */
+.tedx-card-col,
+.speak-events-col {
   flex-shrink: 0;
   scroll-snap-align: start;
-  margin-right: -1px;
-  aspect-ratio: 440 / 780;
-  height: clamp(27rem, 72vh, 46rem);
-  min-height: 26rem;
-  max-height: 46rem;
   position: relative;
+  width: min(82vw, 300px);
+  height: clamp(26rem, 68vh, 40rem);
+  max-height: 40rem;
 }
 
-/* Card Wrapper */
-.tedx-card {
+@media (min-width: 640px) {
+  .tedx-card-col,
+  .speak-events-col {
+    width: min(48vw, 320px);
+    height: clamp(28rem, 70vh, 42rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .tedx-card-col,
+  .speak-events-col {
+    width: min(28vw, 340px);
+    height: clamp(30rem, 72vh, 44rem);
+    max-height: 44rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tedx-card-col,
+  .speak-events-col {
+    width: min(22vw, 360px);
+  }
+}
+
+/* Card shell */
+.tedx-card.se-card {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  color: #ffffff;
+  color: #fff;
+  text-decoration: none;
   cursor: pointer;
-  z-index: 10;
-  container-type: size;
-  border-radius: 0;
-  transform-origin: center center;
-  transition: border-radius 350ms var(--tedx-ease-swift),
-              transform 350ms var(--tedx-ease-swift),
-              box-shadow 350ms var(--tedx-ease-swift);
-  will-change: transform, border-radius, box-shadow;
+  border-radius: var(--se-radius);
   outline: none;
+  transform-origin: center center;
+  transition: transform 350ms var(--tedx-ease-swift), box-shadow 350ms var(--tedx-ease-swift);
+  will-change: transform;
 }
 
-/* Lifted state on Hover */
-.tedx-card.is-lifted {
-  border-radius: var(--tedx-radius-card);
-  transform: scale(var(--lift-scale, 1.035)) translateX(var(--lift-x, 0px));
-  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.16);
+.tedx-card.se-card:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
+}
+
+.tedx-card.se-card.is-lifted {
+  transform: scale(var(--lift-scale, 1.02)) translateX(var(--lift-x, 0px));
   z-index: 30 !important;
 }
 
-.tedx-card.is-settling {
+.tedx-card.se-card.is-settling {
   z-index: 20;
 }
 
-/* Background Media Container */
-.tedx-card-media {
+.se-media {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background-color: #1a1a1a;
+  background: #1a1a1a;
 }
 
-.tedx-card-img,
-.tedx-card-video {
-  position: absolute;
-  inset: 0;
+.se-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05) translate(calc(var(--px, 0) * 2%), calc(var(--py, 0) * 2%));
-  transition: transform 700ms var(--tedx-ease-swift), scale 700ms var(--tedx-ease-swift);
-  will-change: transform, scale;
-  pointer-events: none;
+  transform: scale(1.03) translate(calc(var(--px, 0) * 1.2%), calc(var(--py, 0) * 1.2%));
+  transition: transform 700ms var(--tedx-ease-swift), filter 400ms ease;
 }
 
-.tedx-card.is-lifted .tedx-card-img,
-.tedx-card.is-lifted .tedx-card-video {
-  transform: scale(1.12) translate(calc(var(--px, 0) * 2%), calc(var(--py, 0) * 2%));
+.tedx-card.se-card.is-lifted .se-media img {
+  transform: scale(1.08) translate(calc(var(--px, 0) * 1.2%), calc(var(--py, 0) * 1.2%));
 }
 
-/* Duotone / Gradient Overlays */
-.tedx-card-overlay {
+.se-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
   z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0.22) 36%,
+    rgba(0, 0, 0, 0.78) 72%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
 }
 
-/* Inner Layout */
-.tedx-card-inner {
+.se-glow {
+  display: none;
+}
+
+/* Past */
+.se-card.is-past .se-media img {
+  filter: grayscale(1) contrast(1.05) brightness(0.88);
+}
+
+.se-card.is-past.is-lifted .se-media img {
+  filter: grayscale(0.55) contrast(1.05) brightness(0.94);
+}
+
+.se-card.is-past.is-lifted {
+  box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+/* Upcoming */
+.se-card.is-upcoming .se-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.16) 34%, rgba(0, 0, 0, 0.82) 100%),
+    linear-gradient(0deg, rgba(225, 6, 0, 0.26) 0%, transparent 44%);
+}
+
+.se-card.is-upcoming .se-glow {
+  display: block;
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  bottom: -20%;
+  height: 46%;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 78%, rgba(225, 6, 0, 0.42) 0%, transparent 70%);
+  opacity: 0.8;
+  transition: opacity 350ms ease;
+}
+
+.se-card.is-upcoming.is-lifted .se-glow {
+  opacity: 1;
+}
+
+.se-card.is-upcoming.is-lifted {
+  box-shadow:
+    0 20px 44px -12px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(225, 6, 0, 0.5),
+    0 0 36px -6px var(--speak-event-red-glow);
+}
+
+/* ——— Content stack ——— */
+.se-inner {
   position: relative;
   z-index: 10;
-  display: flex;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 1.5rem;
+  padding: var(--se-pad);
+  gap: 0;
 }
 
 @media (min-width: 768px) {
-  .tedx-card-inner {
-    padding: 2.25rem 2.25rem;
+  .se-inner {
+    --se-pad: 1.55rem;
   }
 }
 
-/* Top: Year Label & Giant Number */
-.tedx-year-wrap {
+/* Row 1: date + brand */
+.se-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.se-when {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  line-height: 1;
+  min-width: 0;
 }
 
-.tedx-year-label {
-  font-family: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(0.75rem, min(1.6vw, 1.75vh), 0.95rem);
+.se-when-month {
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.se-when-day {
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: clamp(3.1rem, 7.5vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+  margin-top: 0.12rem;
+  margin-left: -0.03em;
+  color: #fff;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+}
+
+.se-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.se-brand-speak {
+  font-family: Garet, "Garet Heavy", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: #fff;
+}
+
+.se-brand-events {
+  display: inline-block;
+  padding: 0.22rem 0.48rem;
+  background: var(--speak-event-red);
+  color: #fff;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+/* Row 2: tag + title + desc — sits under date, not cramped */
+.se-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  margin-top: 1.1rem;
+  min-width: 0;
+}
+
+.se-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.78rem;
+  border-radius: 999px;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
   line-height: 1;
 }
 
-.tedx-year-num {
-  font-family: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(5.8rem, min(15vw, 16.5vh), 10.2rem);
-  font-weight: 800;
-  line-height: 0.78;
-  letter-spacing: -0.07em;
-  margin-left: -0.07em;
-  margin-top: 0.25rem;
-  color: #ffffff;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+.se-card.is-past .se-tag {
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.95);
+  background: transparent;
 }
 
-/* Bottom: Date */
-.tedx-date-wrap {
+.se-card.is-upcoming .se-tag {
+  border: 1px solid transparent;
+  color: #fff;
+  background: var(--speak-event-red);
+}
+
+.se-title {
+  margin: 0;
+  max-width: 15ch;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.se-desc {
+  display: none;
+  margin: 0.15rem 0 0;
+  max-width: 26ch;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.se-card.is-upcoming .se-desc {
+  display: block;
+}
+
+/* Row 3: location + CTA — pinned bottom */
+.se-bottom {
   display: flex;
   flex-direction: column;
-  max-width: 65%;
-  gap: 0.25rem;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+  padding-top: 0.15rem;
 }
 
-.tedx-date-text {
-  font-family: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 0.95);
-  white-space: pre-line;
+.se-card.is-upcoming .se-bottom {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  background: linear-gradient(
+      90deg,
+      var(--speak-event-red) 0%,
+      var(--speak-event-red) 38%,
+      transparent 38%
+    )
+    top / 100% 1.5px no-repeat;
 }
 
-/* Bottom-Right: Vertical Theme Logo */
-.tedx-logo-wrap {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-  pointer-events: none;
+.se-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  margin: 0;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-@media (min-width: 768px) {
-  .tedx-logo-wrap {
-    bottom: 2.25rem;
-    right: 2.25rem;
-  }
+.se-pin {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  opacity: 0.95;
 }
 
-.tedx-year-logo {
-  display: block;
-  width: auto;
-  height: min(42cqh, calc(min(8.25rem, 30cqw) / var(--logo-ratio, 0.15)));
-  max-height: 180px;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+.se-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.35rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: background-color 280ms ease, border-color 280ms ease, box-shadow 280ms ease, transform 280ms ease;
 }
 
-/* Floating Navigation Buttons */
+.se-card.is-past .se-cta {
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+  background: transparent;
+}
+
+.se-card.is-past.is-lifted .se-cta {
+  border-color: #fff;
+}
+
+.se-card.is-upcoming .se-cta {
+  border: 1px solid transparent;
+  color: #fff;
+  background: var(--speak-event-red);
+  box-shadow: 0 0 20px -2px var(--speak-event-red-glow);
+}
+
+.se-card.is-upcoming.is-lifted .se-cta {
+  background: #ff1a12;
+  box-shadow: 0 0 28px 0 var(--speak-event-red-glow);
+  transform: translateY(-1px);
+}
+
+/* Nav */
 .tedx-nav-btn {
   position: absolute;
   top: 50%;
@@ -235,29 +483,20 @@
   z-index: 40;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: #111111;
+  background: rgba(255, 255, 255, 0.94);
+  color: #111;
   border: none;
   cursor: pointer;
-  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 300ms var(--tedx-ease-swift),
-              background-color 200ms ease,
-              opacity 200ms ease;
-  user-select: none;
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+  transition: transform 300ms var(--tedx-ease-swift), background-color 200ms ease, opacity 200ms ease;
 }
 
 .tedx-nav-btn:hover {
-  transform: translateY(-50%) scale(1.12);
-  background: #ffffff;
-}
-
-.tedx-nav-btn:active {
-  transform: translateY(-50%) scale(0.94);
+  transform: translateY(-50%) scale(1.08);
+  background: #fff;
 }
 
 .tedx-nav-btn.is-hidden {
@@ -266,28 +505,147 @@
 }
 
 .tedx-nav-prev {
-  left: 1.25rem;
+  left: 0.85rem;
 }
 
 .tedx-nav-next {
-  right: 1.25rem;
+  right: 0.85rem;
 }
 
 @media (min-width: 768px) {
   .tedx-nav-prev {
-    left: 2rem;
+    left: 1.35rem;
   }
   .tedx-nav-next {
-    right: 2rem;
+    right: 1.35rem;
+  }
+}
+
+/* ——— Mobile UX ——— */
+@media (max-width: 767px) {
+  .tedx-deck-section,
+  .speak-events-section {
+    padding: 1.75rem 0 2.25rem;
+  }
+
+  .se-header {
+    padding: 0 1rem 1rem;
+  }
+
+  .se-header-title {
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+  }
+
+  .tedx-track,
+  .speak-events-track {
+    gap: 0.75rem;
+    padding: 0.35rem 1rem 1rem;
+    scroll-padding-inline: 1rem;
+  }
+
+  .tedx-card-col,
+  .speak-events-col {
+    width: min(78vw, 290px);
+    height: clamp(24rem, 64svh, 32rem);
+    max-height: 32rem;
+  }
+
+  .se-inner {
+    --se-pad: 1.15rem;
+  }
+
+  .se-when-month {
+    font-size: 0.66rem;
+  }
+
+  .se-when-day {
+    font-size: clamp(2.75rem, 14vw, 3.5rem);
+  }
+
+  .se-brand-speak {
+    font-size: 0.92rem;
+  }
+
+  .se-mid {
+    margin-top: 0.85rem;
+    gap: 0.55rem;
+  }
+
+  .se-title {
+    font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+    max-width: 14ch;
+  }
+
+  .se-desc {
+    font-size: 0.8rem;
+    max-width: 24ch;
+  }
+
+  .se-bottom {
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .se-cta {
+    min-height: 2.2rem;
+    padding: 0.58rem 1rem;
+    font-size: 0.6rem;
+  }
+
+  .tedx-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .tedx-nav-prev {
+    left: 0.55rem;
+  }
+
+  .tedx-nav-next {
+    right: 0.55rem;
+  }
+
+  /* No scale lift on touch — cleaner scroll */
+  .tedx-card.se-card.is-lifted {
+    transform: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .tedx-card-col,
+  .speak-events-col {
+    width: 84vw;
+    height: clamp(22.5rem, 62svh, 28rem);
+    max-height: 28rem;
+  }
+
+  .se-inner {
+    --se-pad: 1.05rem;
+  }
+
+  .se-when-day {
+    font-size: 2.6rem;
+  }
+
+  .se-title {
+    font-size: 1.2rem;
+  }
+
+  .tedx-nav-btn {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .tedx-card.se-card.is-lifted {
+    transform: none;
+    box-shadow: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tedx-card,
-  .tedx-card-img,
-  .tedx-card-video {
+  .tedx-card.se-card,
+  .se-media img {
     transition: none !important;
-    transform: none !important;
   }
 }
-

@@ -36,7 +36,10 @@
 
     const size = 1;
     const easeScrollPercentage = 100;
-    let cardWidthMin, cardWidthMax, cardHeightMax, cardHeightMin, cardStep;
+    // Locked portrait ratio so every frame stays visually aligned
+    const CARD_ASPECT = 3 / 4; // width / height
+    const CARD_GAP = 14;
+    let cardWidthMin, cardWidthMax, cardHeightMax, cardHeightMin, cardStep, bottomInset;
 
     function updateDimensions() {
       viewportWidth = window.innerWidth;
@@ -44,13 +47,17 @@
       isMobile = viewportWidth < MOBILE_BREAKPOINT;
       isTablet = viewportWidth >= MOBILE_BREAKPOINT && viewportWidth < TABLET_BREAKPOINT;
 
-      cardWidthMin = (isMobile ? 75 : 190) * size;
-      cardWidthMax = (isMobile ? 260 : isTablet ? 500 : 680) * size;
-      cardHeightMax = isMobile
-        ? Math.round(viewportHeight * 0.55 * size)
-        : Math.round(viewportHeight * 0.66 * size);
-      cardHeightMin = (isMobile ? 80 : 50) * size;
-      cardStep = cardWidthMax;
+      bottomInset = isMobile ? 88 : 100;
+      cardWidthMax = (isMobile ? 220 : isTablet ? 360 : 420) * size;
+      cardHeightMax = Math.min(
+        Math.round(viewportHeight * (isMobile ? 0.52 : 0.58) * size),
+        Math.round(cardWidthMax / CARD_ASPECT)
+      );
+      // Keep max width in sync with the height budget + aspect
+      cardWidthMax = Math.round(cardHeightMax * CARD_ASPECT);
+      cardWidthMin = Math.round(cardWidthMax * (isMobile ? 0.42 : 0.38));
+      cardHeightMin = Math.round(cardWidthMin / CARD_ASPECT);
+      cardStep = cardWidthMax + CARD_GAP;
     }
 
     updateDimensions();
@@ -71,7 +78,7 @@
 
     function positionCards(offset) {
       const loopWidth = count * cardStep;
-      const bottom = viewportHeight;
+      const bottom = viewportHeight - bottomInset;
       const easingDistance = 2 * viewportWidth * (easeScrollPercentage / 100);
 
       function mapVtoX(value) {
@@ -89,15 +96,18 @@
         const visualOffset = (i - fractionalOffset) * cardStep;
         const currentX = mapVtoX(visualOffset);
         const nextX = mapVtoX(visualOffset + cardStep);
-        const visualWidth = Math.max(10, nextX - currentX);
-        const scale = visualWidth / cardWidthMax;
-        const cardHeight = Math.max(20, cardHeightMin + scale * (cardHeightMax - cardHeightMin));
+        // Width from perspective, then height locked to aspect so crops stay aligned
+        const rawWidth = Math.max(cardWidthMin * 0.85, nextX - currentX - CARD_GAP * 0.35);
+        const scale = Math.min(1, rawWidth / cardWidthMax);
+        const visualWidth = Math.round(cardWidthMin + scale * (cardWidthMax - cardWidthMin));
+        const cardHeight = Math.round(visualWidth / CARD_ASPECT);
         const y = bottom - cardHeight;
 
         const card = cards[cardIndex];
         if (!card) continue;
 
-        card.style.transform = `translate(${currentX}px, ${y}px)`;
+        card.style.transform = `translate3d(${currentX}px, ${y}px, 0)`;
+        card.style.zIndex = String(10 + Math.round(scale * 40));
 
         const imageWrap = card.querySelector(".zoom-slider-image-wrap");
         if (imageWrap) {
@@ -127,31 +137,42 @@
       state.raf = requestAnimationFrame(tick);
     }
 
-    // Pinned Scroll: locks section until all cards have completed their scroll
+    // Desktop: pin while scrubbing cards. Mobile/tablet: free scroll + drag (no sticky pin).
     let hasScrollTrigger = false;
     if (typeof ScrollTrigger !== "undefined" && typeof gsap !== "undefined") {
       hasScrollTrigger = true;
       gsap.registerPlugin(ScrollTrigger);
 
-      const totalSlideDistance = count * cardStep;
+      const mm = gsap.matchMedia();
 
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: () => "+=" + (window.innerHeight * 2.5),
-        pin: true,
-        pinSpacing: true,
-        scrub: 0.25, // Light, responsive, instant feedback
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          if (!state.isDragging) {
-            state.target = -self.progress * totalSlideDistance;
-          }
-        },
+      mm.add("(min-width: 992px)", () => {
+        const totalSlideDistance = () => count * cardStep;
+        const st = ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: () => "+=" + Math.round(window.innerHeight * 2.5),
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.25,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (!state.isDragging) {
+              state.target = -self.progress * totalSlideDistance();
+            }
+          },
+        });
+        return () => st.kill();
+      });
+
+      mm.add("(max-width: 991px)", () => {
+        // No pin — vertical page scroll stays free; horizontal drag moves cards.
+        section.classList.add("is-mobile-gallery");
+        return () => section.classList.remove("is-mobile-gallery");
       });
     }
 
-    // Fallback wheel event only if ScrollTrigger is unavailable
+    // Fallback wheel only when ScrollTrigger is missing entirely
     if (!hasScrollTrigger) {
       strip.addEventListener(
         "wheel",
@@ -231,15 +252,13 @@
       const imageWrap = card.querySelector(".zoom-slider-image-wrap");
       if (!textElement || !imageWrap) return;
 
-      const numberElement = textElement.querySelector("[data-number]");
       const titleElement = textElement.querySelector("[data-title]");
-      const descElement = textElement.querySelector("[data-desc]");
       const imageElement = imageWrap.querySelector("img");
 
       let split = null;
-      if (typeof SplitText !== "undefined" && typeof gsap !== "undefined") {
+      if (typeof SplitText !== "undefined" && typeof gsap !== "undefined" && titleElement) {
         try {
-          split = SplitText.create([numberElement, titleElement, descElement], {
+          split = SplitText.create([titleElement], {
             type: "lines",
             mask: "lines",
           });
@@ -340,9 +359,14 @@
 
     window.addEventListener("resize", syncPageScroll);
 
+    // Approach (and other late layout) can shift document height after init —
+    // re-measure pin start/end so gallery scrub doesn't jump.
+    window.addEventListener("speak:layout", syncPageScroll);
+
     // Initial syncs to ensure pin-spacer is calculated accurately
     setTimeout(syncPageScroll, 200);
     setTimeout(syncPageScroll, 600);
+    setTimeout(syncPageScroll, 1200);
 
     // Start RAF
     state.raf = requestAnimationFrame(tick);

@@ -1,0 +1,315 @@
+.nav-logo-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+}
+
+.nav-logo-mark {
+  display: block;
+  width: 2.75em;
+  height: 2.75em;
+  object-fit: contain;
+  flex: none;
+}
+
+.nav-logo {
+  min-width: 2.75em;
+}
+
+.nav-logo-text {
+  line-height: 1;
+}
+
+@media (max-width: 479px) {
+  .nav-logo-mark {
+    width: 2.15em;
+    height: 2.15em;
+  }
+}
+
+/* Delivery formats: zigzag image left / image right */
+#projects .work_grid-wrap .work_image-wrap {
+  grid-area: 1 / 3 / 2 / 9 !important;
+}
+
+#projects .work_grid-wrap .work_description-wrap {
+  grid-area: 1 / 9 / 2 / 13 !important;
+  align-self: center;
+}
+
+#projects .work_grid-wrap.is-reversed .work_image-wrap {
+  grid-area: 1 / 5 / 2 / 11 !important;
+}
+
+#projects .work_grid-wrap.is-reversed .work_description-wrap {
+  grid-area: 1 / 1 / 2 / 5 !important;
+}
+
+@media screen and (max-width: 991px) {
+  #projects .work_grid-wrap .work_image-wrap,
+  #projects .work_grid-wrap .work_description-wrap,
+  #projects .work_grid-wrap.is-reversed .work_image-wrap,
+  #projects .work_grid-wrap.is-reversed .work_description-wrap {
+    grid-area: auto !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1919px) {
+  #projects .work_grid-wrap .work_image-wrap {
+    grid-area: 1 / 1 / 2 / 8 !important;
+  }
+
+  #projects .work_grid-wrap .work_description-wrap {
+    grid-area: 1 / 8 / 2 / 13 !important;
+  }
+
+  #projects .work_grid-wrap.is-reversed .work_image-wrap {
+    grid-area: 1 / 6 / 2 / 13 !important;
+  }
+
+  #projects .work_grid-wrap.is-reversed .work_description-wrap {
+    grid-area: 1 / 1 / 2 / 6 !important;
+  }
+}
+
+/* Nav: desktop inline links — tablet/mobile use drawer */
+.nav_link-wrap {
+  flex-wrap: nowrap !important;
+  max-width: none !important;
+  grid-column-gap: clamp(0.15em, 0.7vw, 0.5em);
+  grid-row-gap: 0;
+}
+
+.nav_link {
+  flex: none;
+  white-space: nowrap;
+  padding-left: 0.28em;
+  padding-right: 0.28em;
+  font-size: clamp(0.72rem, 0.88vw, 0.9rem);
+}
+
+.nav_link-text,
+.nav_link-text.copia {
+  white-space: nowrap;
+  line-height: 1.1;
+}
+
+.nav_link-text.copia {
+  left: 0;
+  width: 100%;
+}
+
+.nav_btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  justify-self: end;
+}
+
+.speak-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.speak-menu-toggle__bars,
+.speak-menu-toggle__bars::before,
+.speak-menu-toggle__bars::after {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  position: relative;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.speak-menu-toggle__bars::before,
+.speak-menu-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.speak-menu-toggle__bars::before {
+  top: -5px;
+}
+
+.speak-menu-toggle__bars::after {
+  top: 5px;
+}
+
+html.speak-menu-open .speak-menu-toggle__bars {
+  background: transparent;
+}
+
+html.speak-menu-open .speak-menu-toggle__bars::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+html.speak-menu-open .speak-menu-toggle__bars::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.speak-menu-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(3, 3, 3, 0.55);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.speak-menu-drawer[hidden] {
+  display: none !important;
+}
+
+.speak-menu-drawer__panel {
+  width: min(100%, 22rem);
+  height: 100%;
+  background: #030303;
+  color: #ffffff;
+  padding: 5.5rem 1.5rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow-y: auto;
+}
+
+.speak-menu-drawer__link {
+  display: block;
+  padding: 0.85rem 0.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Garet", Arial, sans-serif;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.speak-menu-drawer__link:hover,
+.speak-menu-drawer__link:focus-visible {
+  color: #c3c3c2;
+}
+
+@media screen and (max-width: 1199px) {
+  .nav_link-wrap {
+    display: none !important;
+  }
+
+  .speak-menu-toggle {
+    display: inline-flex;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .speak-menu-toggle,
+  .speak-menu-drawer {
+    display: none !important;
+  }
+
+  html.speak-menu-open {
+    /* no-op on desktop */
+  }
+}
+
+/* About Speak */
+.about-speak-section {
+  position: relative;
+  width: 100%;
+  background: #030303;
+  color: #ffffff;
+  padding: clamp(4.5rem, 10vh, 7.5rem) 1.5rem;
+  box-sizing: border-box;
+}
+
+.about-speak-inner {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-speak-label {
+  margin: 0 0 1.25rem;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c3c3c2;
+}
+
+.about-speak-title {
+  margin: 0 0 1.5rem;
+  font-family: "Garet", Arial, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.about-speak-copy {
+  margin: 0 auto 1.1rem;
+  max-width: 38rem;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: clamp(0.98rem, 1.5vw, 1.1rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.about-speak-copy--secondary {
+  margin-bottom: 1.75rem;
+  font-size: clamp(0.92rem, 1.3vw, 1.02rem);
+  color: #c3c3c2;
+  letter-spacing: 0.01em;
+}
+
+.about-speak-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem 0.75rem;
+  margin-bottom: 2rem;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c3c3c2;
+}
+
+.about-speak-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: Geist, Montserrat, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.about-speak-link:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}

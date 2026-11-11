@@ -78,6 +78,32 @@
 }
 
 .flashlight-hero .brand-wordmark {
-  color: #f9efe7;
+  color: #ffffff;
+}
+
+/* Footer closer — same wall, brand signature */
+.flashlight-footer {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  background: #000000;
+  overflow: hidden;
+  z-index: 20;
+  isolation: isolate;
+}
+
+.flashlight-footer [data-flashlight-footer] {
+  display: block;
+  width: 100%;
+  min-height: 100svh;
+}
+
+.flashlight-footer-stage {
+  min-height: 100svh !important;
+  height: 100svh !important;
+}
+
+.flashlight-footer .flashlight-hero__writing {
+  pointer-events: none;
 }
 
