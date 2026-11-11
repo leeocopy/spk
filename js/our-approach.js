@@ -33563,7 +33563,7 @@
                 "svg",
                 {
                   className: "oa-pyramid-svg",
-                  viewBox: "0 0 100 95",
+                  viewBox: "0 0 100 100",
                   fill: "none",
                   role: "img",
                   "aria-label": "Speak approach pyramid: Situations, Practice, Confidence",
@@ -33573,37 +33573,37 @@
                       /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
                         id: "oa-tier-base",
                         x1: "50",
-                        y1: "62",
+                        y1: "67",
                         x2: "50",
-                        y2: "92",
+                        y2: "98",
                         gradientUnits: "userSpaceOnUse",
                         children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#303030", stopOpacity: "0.85" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#141414", stopOpacity: "0.95" })
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#303030", stopOpacity: "0.88" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#141414", stopOpacity: "0.96" })
                         ]
                       }),
                       /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
                         id: "oa-tier-mid",
                         x1: "50",
-                        y1: "32",
+                        y1: "35",
                         x2: "50",
-                        y2: "62",
+                        y2: "67",
                         gradientUnits: "userSpaceOnUse",
                         children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#484848", stopOpacity: "0.88" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#1e1e1e", stopOpacity: "0.95" })
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#484848", stopOpacity: "0.9" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#1e1e1e", stopOpacity: "0.96" })
                         ]
                       }),
                       /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("linearGradient", {
                         id: "oa-tier-top",
                         x1: "50",
-                        y1: "6",
+                        y1: "4",
                         x2: "50",
-                        y2: "32",
+                        y2: "35",
                         gradientUnits: "userSpaceOnUse",
                         children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#6c6c6c", stopOpacity: "0.92" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#2c2c2c", stopOpacity: "0.95" })
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { stopColor: "#6c6c6c", stopOpacity: "0.94" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("stop", { offset: "1", stopColor: "#2c2c2c", stopOpacity: "0.96" })
                         ]
                       })
                     ]
@@ -33619,10 +33619,10 @@
                       onClick: () => setHovered("situations"),
                       tabIndex: 0,
                       role: "button",
-                      "aria-label": "01 Situations: Meetings, pitches and negotiations where English must work",
+                      "aria-label": "01 Situations",
                       children: [
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
-                          points: "4,92 96,92 80,62 20,62",
+                          points: "5,98 95,98 80,67 20,67",
                           fill: "url(#oa-tier-base)",
                           stroke: "white",
                           strokeWidth: hovered === "situations" ? 0.65 : 0.35,
@@ -33631,29 +33631,42 @@
                         }),
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
                           x: "50",
-                          y: "74",
+                          y: "77",
                           textAnchor: "middle",
                           fill: "#ffffff",
-                          fillOpacity: "0.95",
+                          fillOpacity: "0.98",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "5.0",
-                          fontWeight: "600",
+                          fontSize: "4.0",
+                          fontWeight: "700",
                           letterSpacing: "0.06em",
                           style: { pointerEvents: "none" },
                           children: "01 · SITUATIONS"
                         }),
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
                           x: "50",
-                          y: "82",
+                          y: "85",
                           textAnchor: "middle",
                           fill: "#ffffff",
                           fillOpacity: "0.75",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "2.4",
+                          fontSize: "2.1",
                           fontWeight: "400",
-                          letterSpacing: "0.015em",
+                          letterSpacing: "0.01em",
                           style: { pointerEvents: "none" },
-                          children: "Meetings, pitches & negotiations where English must work"
+                          children: "Meetings, pitches & negotiations"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "90.5",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.75",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "2.1",
+                          fontWeight: "400",
+                          letterSpacing: "0.01em",
+                          style: { pointerEvents: "none" },
+                          children: "where English must work"
                         })
                       ]
                     }
@@ -33669,10 +33682,10 @@
                       onClick: () => setHovered("practice"),
                       tabIndex: 0,
                       role: "button",
-                      "aria-label": "02 Practice: Coaching, workshops and events built around real work",
+                      "aria-label": "02 Practice",
                       children: [
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
-                          points: "20,62 80,62 64,32 36,32",
+                          points: "20,67 80,67 65,35 35,35",
                           fill: "url(#oa-tier-mid)",
                           stroke: "white",
                           strokeWidth: hovered === "practice" ? 0.65 : 0.35,
@@ -33681,29 +33694,42 @@
                         }),
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
                           x: "50",
-                          y: "44",
+                          y: "46",
                           textAnchor: "middle",
                           fill: "#ffffff",
-                          fillOpacity: "0.95",
+                          fillOpacity: "0.98",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "4.6",
-                          fontWeight: "600",
+                          fontSize: "3.6",
+                          fontWeight: "700",
                           letterSpacing: "0.06em",
                           style: { pointerEvents: "none" },
                           children: "02 · PRACTICE"
                         }),
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
                           x: "50",
-                          y: "52",
+                          y: "53.5",
                           textAnchor: "middle",
                           fill: "#ffffff",
                           fillOpacity: "0.78",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "2.3",
+                          fontSize: "2.0",
                           fontWeight: "400",
-                          letterSpacing: "0.015em",
+                          letterSpacing: "0.01em",
                           style: { pointerEvents: "none" },
-                          children: "Coaching, workshops & events built around real work"
+                          children: "Coaching, workshops & events"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "58.5",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.78",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "2.0",
+                          fontWeight: "400",
+                          letterSpacing: "0.01em",
+                          style: { pointerEvents: "none" },
+                          children: "built around real work"
                         })
                       ]
                     }
@@ -33719,10 +33745,10 @@
                       onClick: () => setHovered("confidence"),
                       tabIndex: 0,
                       role: "button",
-                      "aria-label": "03 Confidence: Presence, clarity and precision under pressure",
+                      "aria-label": "03 Confidence",
                       children: [
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("polygon", {
-                          points: "36,32 64,32 50,6",
+                          points: "35,35 65,35 50,4",
                           fill: "url(#oa-tier-top)",
                           stroke: "white",
                           strokeWidth: hovered === "confidence" ? 0.65 : 0.35,
@@ -33736,24 +33762,37 @@
                           fill: "#ffffff",
                           fillOpacity: "0.98",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "3.8",
-                          fontWeight: "600",
-                          letterSpacing: "0.06em",
+                          fontSize: "2.8",
+                          fontWeight: "700",
+                          letterSpacing: "0.05em",
                           style: { pointerEvents: "none" },
                           children: "03 · CONFIDENCE"
                         }),
                         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
                           x: "50",
-                          y: "25.5",
+                          y: "26",
                           textAnchor: "middle",
                           fill: "#ffffff",
                           fillOpacity: "0.82",
                           fontFamily: "DM Sans, sans-serif",
-                          fontSize: "2.0",
+                          fontSize: "1.7",
                           fontWeight: "400",
-                          letterSpacing: "0.015em",
+                          letterSpacing: "0.01em",
                           style: { pointerEvents: "none" },
-                          children: "Presence, clarity & precision"
+                          children: "Presence, clarity"
+                        }),
+                        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", {
+                          x: "50",
+                          y: "30",
+                          textAnchor: "middle",
+                          fill: "#ffffff",
+                          fillOpacity: "0.82",
+                          fontFamily: "DM Sans, sans-serif",
+                          fontSize: "1.7",
+                          fontWeight: "400",
+                          letterSpacing: "0.01em",
+                          style: { pointerEvents: "none" },
+                          children: "& precision"
                         })
                       ]
                     }

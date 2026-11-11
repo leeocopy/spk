@@ -86,8 +86,9 @@ svg {
 
   .ycs-header-lockup {
     max-width: 100%;
-    flex-wrap: nowrap;
-    justify-content: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Storytelling — no sticky residue, readable copy */
@@ -297,13 +298,13 @@ svg {
     padding: 0.4em 0.55em;
   }
 
-  /* With Speak lockup — scale slightly on narrow phones to avoid clip */
-  .ycs-speak {
-    font-size: clamp(3.4rem, 14vw, 5.75rem) !important;
-  }
-
+  /* With Speak lockup — identical bold size & responsive scale */
+  .ycs-speak,
   .ycs-with {
-    font-size: clamp(1.1rem, 3.8vw, 1.75rem) !important;
+    font-family: "Garet Heavy", "Garet", Arial, sans-serif !important;
+    font-weight: 800 !important;
+    font-size: clamp(2.4rem, 11vw, 5.75rem) !important;
+    line-height: 1 !important;
   }
 
   .ycs-header-mark {

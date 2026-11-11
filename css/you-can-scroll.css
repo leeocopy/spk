@@ -59,45 +59,52 @@
 }
 
 .ycs-header-lockup {
-  display: inline-flex !important;
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: clamp(0.9rem, 1.8vw, 1.5rem) !important;
+  justify-content: center !important;
+  gap: clamp(0.75rem, 1.6vw, 1.35rem) !important;
+  text-align: center !important;
 }
 
 .ycs-header-mark {
   display: block !important;
-  width: 5.5rem !important;
+  width: clamp(4.5rem, 6.5vw, 6rem) !important;
   height: auto !important;
   object-fit: contain !important;
   flex: none !important;
+  margin: 0 auto !important;
 }
 
 .ycs-header-title {
   display: inline-flex !important;
   align-items: baseline !important;
+  justify-content: center !important;
   gap: 0.42em !important;
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1 !important;
-  text-align: left !important;
+  text-align: center !important;
   filter: none !important;
   opacity: 1 !important;
 }
 
+.ycs-with,
+.ycs-speak {
+  font-family: "Garet Heavy", "Garet", Arial, sans-serif !important;
+  font-size: clamp(3.2rem, 7vw, 5.75rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
 .ycs-with {
-  font-family: Geist, Montserrat, Arial, sans-serif !important;
-  font-size: 1.75rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.14em !important;
+  letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
   color: #c3c3c2 !important;
 }
 
 .ycs-speak {
-  font-family: "Garet", Arial, sans-serif !important;
-  font-size: 5.75rem !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.06em !important;
+  letter-spacing: 0.02em !important;
   text-transform: none !important;
   color: #ffffff !important;
 }
@@ -273,11 +280,9 @@
     margin-top: calc(50vh - 20vh) !important;
   }
   /* Keep With Speak lockup at desktop size on tablet/mobile */
-  .ycs-speak {
-    font-size: 5.75rem !important;
-  }
+  .ycs-speak,
   .ycs-with {
-    font-size: 1.75rem !important;
+    font-size: 5.75rem !important;
   }
   .ycs-header-mark {
     width: 5.5rem !important;
