@@ -126,12 +126,14 @@ svg {
     width: 100%;
   }
 
-  /* Gallery — free vertical scroll (pin off via JS); keep one-screen stage */
+  /* Gallery — responsive pinned kinetic animation */
   .zoom-slider-section,
   .zoom-slider-section.is-mobile-gallery {
     height: 100svh;
-    min-height: 600px;
+    min-height: 0;
+    max-height: 100svh;
     max-width: 100%;
+    overflow: hidden;
   }
 
   .zoom-slider-header {
@@ -313,8 +315,9 @@ svg {
 
   .zoom-slider-section,
   .zoom-slider-section.is-mobile-gallery {
-    min-height: 540px;
+    min-height: 0;
     height: 100svh;
+    max-height: 100svh;
   }
 
   .zoom-slider-header {

@@ -8,7 +8,7 @@
   --speak-event-red: #e10600;
   --speak-event-red-glow: rgba(225, 6, 0, 0.5);
   --se-pad: 1.35rem;
-  --se-radius: 1.25rem;
+  --se-radius: 0;
 }
 
 .tedx-deck-section,
@@ -146,7 +146,7 @@
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  border-radius: var(--se-radius);
+  border-radius: 0;
   outline: none;
   transform-origin: center center;
   transition: transform 350ms var(--tedx-ease-swift), box-shadow 350ms var(--tedx-ease-swift);
@@ -440,39 +440,56 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.35rem;
-  padding: 0.65rem 1.1rem;
-  border-radius: 999px;
-  font-family: Geist, Montserrat, Arial, sans-serif;
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  gap: 0.45rem;
+  min-height: 2.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px !important;
+  font-family: 'Garet', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
   line-height: 1;
-  transition: background-color 280ms ease, border-color 280ms ease, box-shadow 280ms ease, transform 280ms ease;
+  transition: all 260ms ease;
+  user-select: none;
+}
+
+.se-cta .se-cta-arrow,
+.se-cta svg {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  transition: transform 260ms ease;
 }
 
 .se-card.is-past .se-cta {
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  color: #fff;
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .se-card.is-past.is-lifted .se-cta {
-  border-color: #fff;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
 }
 
 .se-card.is-upcoming .se-cta {
-  border: 1px solid transparent;
-  color: #fff;
-  background: var(--speak-event-red);
-  box-shadow: 0 0 20px -2px var(--speak-event-red-glow);
+  border: 1px solid #ffffff;
+  color: #000000;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .se-card.is-upcoming.is-lifted .se-cta {
-  background: #ff1a12;
-  box-shadow: 0 0 28px 0 var(--speak-event-red-glow);
+  background: #f4f4f5;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
+}
+
+.se-card.is-lifted .se-cta .se-cta-arrow,
+.se-card.is-lifted .se-cta svg {
+  transform: translate(2px, -2px);
 }
 
 /* Nav */
@@ -587,9 +604,10 @@
   }
 
   .se-cta {
-    min-height: 2.2rem;
-    padding: 0.58rem 1rem;
-    font-size: 0.6rem;
+    min-height: 2rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.7rem;
+    border-radius: 4px !important;
   }
 
   .tedx-nav-btn {

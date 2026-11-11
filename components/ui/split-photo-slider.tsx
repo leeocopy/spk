@@ -350,27 +350,38 @@ const CSS = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 13.5em;
-  height: 3.4em;
-  padding: 0 1.8em;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 9999px;
+  gap: 0.55rem;
+  min-width: 0;
+  height: auto;
+  padding: 0.65rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
   cursor: pointer;
-  font: inherit;
-  font-size: clamp(10px, 0.82cqw, 13px);
+  font-family: 'Garet', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  text-transform: none;
   text-decoration: none;
-  color: #0c0c0c;
+  color: #000000;
   background: #ffffff;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  width: fit-content;
 }
 .sps-cta:hover {
-  background: #e6e6e6;
+  background: #f4f4f5;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+}
+.sps-cta .sps-cta-arrow {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.sps-cta:hover .sps-cta-arrow {
+  transform: translate(2px, -2px);
 }
 .sps-cta:focus-visible {
   outline: 2px solid #ffffff;
@@ -884,7 +895,10 @@ export default function SplitPhotoSlider({
                           tabIndex={isActive ? 0 : -1}
                           onClick={() => onCta?.(s, i)}
                         >
-                          {s.cta ?? ctaLabel}
+                          <span>{s.cta ?? ctaLabel}</span>
+                          <svg className="sps-cta-arrow" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                            <path d="M1.24993 10.5245L-9.14435e-06 9.27457L7.49961 1.77495L0.624959 1.77495L0.624959 3.99351e-05L10.5245 4.06895e-05L10.5245 9.89954L8.74954 9.89954L8.74954 3.02489L1.24993 10.5245Z" fill="currentColor"/>
+                          </svg>
                         </a>
                       ) : (
                         <button
@@ -893,7 +907,10 @@ export default function SplitPhotoSlider({
                           tabIndex={isActive ? 0 : -1}
                           onClick={() => onCta?.(s, i)}
                         >
-                          {s.cta ?? ctaLabel}
+                          <span>{s.cta ?? ctaLabel}</span>
+                          <svg className="sps-cta-arrow" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                            <path d="M1.24993 10.5245L-9.14435e-06 9.27457L7.49961 1.77495L0.624959 1.77495L0.624959 3.99351e-05L10.5245 4.06895e-05L10.5245 9.89954L8.74954 9.89954L8.74954 3.02489L1.24993 10.5245Z" fill="currentColor"/>
+                          </svg>
                         </button>
                       )}
                     </div>

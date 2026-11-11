@@ -58,11 +58,6 @@
   touch-action: pan-y;
 }
 
-/* Mobile/tablet: allow horizontal drag without fighting page scroll */
-.zoom-slider-section.is-mobile-gallery .zoom-slider-strip {
-  touch-action: pan-x;
-}
-
 .zoom-slider-strip.is-dragging {
   cursor: grabbing;
 }
@@ -72,6 +67,8 @@
   left: 0;
   top: 0;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .zoom-slider-text {
@@ -176,28 +173,31 @@
   .zoom-slider-section,
   .zoom-slider-section.is-mobile-gallery {
     height: 100svh;
-    min-height: 600px;
+    min-height: 0;
+    max-height: 100svh;
   }
 
+  .zoom-slider-strip,
   .zoom-slider-section.is-mobile-gallery .zoom-slider-strip {
-    touch-action: pan-x;
+    touch-action: pan-y;
   }
 }
 
 @media (max-width: 640px) {
   .zoom-slider-section,
   .zoom-slider-section.is-mobile-gallery {
-    min-height: 540px;
+    min-height: 0;
     height: 100svh;
+    max-height: 100svh;
   }
 
   .zoom-slider-header {
-    top: max(4.75rem, calc(env(safe-area-inset-top) + 3.75rem));
+    top: max(4.5rem, calc(env(safe-area-inset-top) + 3.25rem));
     width: min(92%, 24rem);
   }
 
   .zoom-slider-nav-hint {
-    bottom: max(1rem, env(safe-area-inset-bottom));
+    bottom: max(1.1rem, calc(env(safe-area-inset-bottom) + 0.6rem));
   }
 
   .zoom-slider-text [data-title] {

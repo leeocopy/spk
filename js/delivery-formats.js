@@ -114,7 +114,10 @@
                 <p class="sps-desc" data-sps-l="">${s.description}</p>
                 <div data-sps-l="">
                   <a class="sps-cta" href="${s.href}">
-                    ${s.cta}
+                    <span>${s.cta}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none" class="sps-cta-arrow">
+                      <path d="M1.24993 10.5245L-9.14435e-06 9.27457L7.49961 1.77495L0.624959 1.77495L0.624959 3.99351e-05L10.5245 4.06895e-05L10.5245 9.89954L8.74954 9.89954L8.74954 3.02489L1.24993 10.5245Z" fill="currentColor"></path>
+                    </svg>
                   </a>
                 </div>
               </div>

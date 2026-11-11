@@ -1,0 +1,201 @@
+/**
+ * 3D Isometric Cube Loader
+ * Theme: Speak Dark Luxury (Deep Black #050505, Translucent Glass Cubes, Luminous White Glow)
+ */
+
+:root {
+  --wrapper-bg: #050505;
+  --cube-color: rgba(255, 255, 255, 0.04);
+  --cube-border: rgba(255, 255, 255, 0.12);
+  --highlight-color: #ffffff;
+  --cube-size: 44px;
+  --half-cube: 22px;
+  --anim-duration: 2s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --cube-size: 34px;
+    --half-cube: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --cube-size: 28px;
+    --half-cube: 14px;
+  }
+}
+
+.loader__cube-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.wrapper-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
+  perspective: 1000px;
+  perspective-origin: 50% 35%;
+  transform-style: preserve-3d;
+  padding: 24px 10px;
+}
+
+.cube {
+  position: relative;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform-style: preserve-3d;
+  transform: rotateX(-22deg) rotateY(-30deg);
+  animation: translate-z var(--anim-duration) ease-in-out infinite;
+}
+
+/* Staggered delay for SPEAK (5 cubes) */
+.cube:nth-child(1) { animation-delay: 0s; }
+.cube:nth-child(2) { animation-delay: 0.18s; }
+.cube:nth-child(3) { animation-delay: 0.36s; }
+.cube:nth-child(4) { animation-delay: 0.54s; }
+.cube:nth-child(5) { animation-delay: 0.72s; }
+
+.cube .face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'Garet', 'Garet Heavy', 'Inter', -apple-system, sans-serif;
+  font-weight: 800;
+  font-size: calc(var(--cube-size) * 0.48);
+  line-height: 1;
+  backface-visibility: visible;
+  border: 1px solid var(--cube-border);
+  background-color: var(--cube-color);
+  animation: edge-glow var(--anim-duration) ease-in-out infinite;
+  animation-delay: inherit;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* 6 Faces positioned in 3D around the cube center */
+.cube .face-front {
+  transform: translateZ(var(--half-cube));
+  animation: edge-glow var(--anim-duration) ease-in-out infinite,
+             face-glow var(--anim-duration) ease-in-out infinite,
+             face-color var(--anim-duration) ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+.cube .face-back {
+  transform: rotateY(180deg) translateZ(var(--half-cube));
+}
+
+.cube .face-right {
+  transform: rotateY(90deg) translateZ(var(--half-cube));
+}
+
+.cube .face-left {
+  transform: rotateY(-90deg) translateZ(var(--half-cube));
+}
+
+.cube .face-top {
+  transform: rotateX(90deg) translateZ(var(--half-cube));
+  animation: edge-glow var(--anim-duration) ease-in-out infinite,
+             face-color var(--anim-duration) ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+.cube .face-bottom {
+  transform: rotateX(-90deg) translateZ(var(--half-cube));
+}
+
+/* Subtitle and brand lockup */
+.loader__brand-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.loader__brand-name {
+  font-family: 'Garet', 'Garet Heavy', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.loader__brand-tag {
+  font-family: 'Garet', 'Garet Heavy', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.68rem, 0.9vw, 0.82rem);
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+
+/* Keyframes matching the requested isometric motion and site colors */
+@keyframes translate-z {
+  0%,
+  40%,
+  100% {
+    transform: rotateX(-22deg) rotateY(-30deg) translateZ(-2px);
+  }
+  30% {
+    transform: rotateX(-22deg) rotateY(-30deg) translateZ(16px) translateY(-3px);
+  }
+}
+
+@keyframes face-color {
+  0%,
+  50%,
+  100% {
+    background-color: var(--cube-color);
+  }
+  20%,
+  30% {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+}
+
+@keyframes face-glow {
+  0%,
+  50%,
+  100% {
+    color: rgba(255, 255, 255, 0.22);
+    filter: none;
+    text-shadow: none;
+  }
+  30% {
+    color: #ffffff;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95)) drop-shadow(0 8px 16px rgba(255, 255, 255, 0.45));
+    text-shadow: 0 0 8px #ffffff;
+  }
+}
+
+@keyframes edge-glow {
+  0%,
+  40%,
+  100% {
+    box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px 1px rgba(255, 255, 255, 0.04);
+    border-color: var(--cube-border);
+  }
+  30% {
+    box-shadow: 0 0 12px 1px rgba(255, 255, 255, 0.4),
+                inset 0 0 8px 1px rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
